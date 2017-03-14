@@ -151,5 +151,10 @@ namespace ZoomableReference
         {
             image.VerticalFlip();
         }
+
+        private void HideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }
