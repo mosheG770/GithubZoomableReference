@@ -1,0 +1,61 @@
+# ZoomableReference
+Maybe complex program to help me paint.
+
+basically, this WPF is topmost window with one image element, by the time it's become more and more complex, use it if you want, but I not except you to understand everything in the first time.
+
+# Download
+Click on 'Release' or [here](https://github.com/mosheG770/ZoomableReference/releases/latest).
+
+# How to use:
+The program have 3 windows: Manager window, Reference window, and Future window (code name). 
+
+# Manager Window:
+![Manager window](/Images/ManagerWindow.PNG?raw=true "Manager Window")
+
+The first window that start is the window manager, when this window close, the program close.
+
+ * 'New Window' - Create new Reference window.
+ * 'Close all' - Close all the reference windwos.
+ * 'Hide' - Hide all the windows, so you can do something else. (like take a break)
+ * 'Show all' - Bring back all the windows.
+ * 'Experimental window' - Create new Future window.
+ * 'Soft' - Make all the future windows moveable again (will explain later)
+ * 'Save state' - Save the current state of the Reference windows to file, include position and size of the window and the image.
+ * 'Load state' - Load state from file, so you can continue from the last you stop.
+ * 'Protection' - well, I have program that always make problem when I minimize it, so I make small window on the screen so now I can't click on the Minimize button of that program.
+ 
+ 
+ Move on:
+ # Reference window:
+ 
+ ![Reference window](/Images/ReferenceWindow.PNG?raw=true "Reference window")
+ 
+ * '...' - Browse button, where you can select file.
+ * 'X' (red) - Close the window.
+ * 'URL' - Make field visible so you can paste URL in it and click the 'Load' to load it.
+ * 'Move' - Allow the user to drag the window on the screen.
+ * 'Reset' - Reset the position and the size of the image in the window to the default values.
+ * 'Color' - Change the color of the background of the window to the value of the field below it.
+ * 'Save Size N Position' (and everything below it) - is not in use anymore, it's work, but it's better to use the manager window instead.
+ 
+ Now you can drag and drop links and images on the window and it's will try to show them. (Not everything work yet)
+ 
+ Last one:
+ # Future window:
+ ![Future window](/Images/FutureWindow.PNG?raw=true "Future window")
+
+this window has no window, it's fullscreen mode, and you can drag the image around and change the opacity.
+To make things easier, while you hold the 'left ctrl' you can drag and zoom-in/out anywhere on the screen, things will be more clear if you try it.
+
+the window has 2 states - Solid and Soft, **Solid** mean you can't move the image, zoom or change anything, but you click through the image. **Soft** mean you can move, zoom or even change image.
+
+
+* 'Solid' - Set the state of the window to 'Solid'
+* 'Load' - Browse for image in the window to load on the screen.
+* The Slider on the top - Change the opacity.
+
+
+#Thanks:
+[ZoomPan](http://stackoverflow.com/questions/741956/pan-zoom-image)
+
+[DragDrop](http://stackoverflow.com/questions/8442085/receiving-an-image-dragged-from-web-page-to-wpf-window)
