@@ -64,7 +64,8 @@ the window has 2 states - Solid and Soft, **Solid** mean you can't move the imag
 * The Slider on the top - Change the opacity.
 
 
-#Thanks:
+# Thanks:
+
 [ZoomPan](http://stackoverflow.com/questions/741956/pan-zoom-image)
 
 [DragDrop](http://stackoverflow.com/questions/8442085/receiving-an-image-dragged-from-web-page-to-wpf-window)
