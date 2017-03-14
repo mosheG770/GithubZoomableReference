@@ -17,7 +17,6 @@ namespace ZoomableReference
         FocusManager focus;
         DragManager drag;
         PresetsManager presets;
-        ImageRotator rotator;
         internal StateManager state;
 
         internal State PreloadState { get; set; }
@@ -33,7 +32,6 @@ namespace ZoomableReference
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             IsShowing = false;
-            //ManagerWindow.Manager.listMainWindow.Remove(this);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +47,6 @@ namespace ZoomableReference
             focus = new FocusManager(this);
             drag = new DragManager(this);
             presets = new PresetsManager(this);
-            rotator = new ImageRotator(this);
 
             state = new StateManager(this);
 
@@ -159,9 +156,22 @@ namespace ZoomableReference
             WindowState = WindowState.Minimized;
         }
 
-        private void RotateClockBtn_Click(object sender, RoutedEventArgs e)
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            rotator.RotateClock();
+            if (e.Key == Key.LeftCtrl)
+                RotateModekCB.IsChecked = true;
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl)
+                RotateModekCB.IsChecked = false;
+        }
+
+        private void RotateModekCB_Checked(object sender, RoutedEventArgs e)
+        {
+            image.IsRotateMode = RotateModekCB.IsChecked == true;
         }
     }
 }

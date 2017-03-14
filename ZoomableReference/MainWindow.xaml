@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ZoomableReference"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
-        AllowDrop="True" Drop="Window_DragEnter">
+        AllowDrop="True" Drop="Window_DragEnter"
+        KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
 
     <Grid x:Name="LayoutRoot" Background="#FFCFD8DC">
         <Border Name="border">
@@ -43,7 +44,7 @@
             </Button.RenderTransform>
         </Button>
         <Button x:Name="HideBtn" Content="Hide" HorizontalAlignment="Left" Margin="0,141,0,0" VerticalAlignment="Top" Width="75" Click="HideBtn_Click"/>
-        <Button x:Name="RotateClockBtn" Content="Rotate" HorizontalAlignment="Left" Margin="46,103,0,0" VerticalAlignment="Top" Width="75" Click="RotateClockBtn_Click"/>
+        <CheckBox x:Name="RotateModekCB" Checked="RotateModekCB_Checked" Unchecked="RotateModekCB_Checked" Content="Rotate" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="56" Height="19"/>
 
     </Grid>
 </Window>

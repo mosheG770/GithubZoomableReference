@@ -103,6 +103,7 @@
       <DependentUpon>FutureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageRotator.cs" />
+    <Compile Include="MainWindowPartial.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>

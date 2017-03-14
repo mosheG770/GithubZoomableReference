@@ -6,16 +6,16 @@ namespace ZoomableReference
 {
     internal class ImageRotator
     {
-        private MainWindow main;
+        private ZoomPanImage zoomPanImage;
 
-        public ImageRotator(MainWindow mainWindow)
+        public ImageRotator(ZoomPanImage zoomPanImage)
         {
-            this.main = mainWindow;
+            this.zoomPanImage = zoomPanImage;
         }
 
-        public void RotateClock()
+        internal void RotateClock(double v)
         {
-            main.image.RotateClock();
+            zoomPanImage.AddAngle(v);
         }
     }
 }
