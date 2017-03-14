@@ -112,6 +112,7 @@
     <Compile Include="ProtectionWindow.xaml.cs">
       <DependentUpon>ProtectionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsManager.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="TextBoxSA.cs" />
     <Compile Include="UCZoomPanImage.xaml.cs">

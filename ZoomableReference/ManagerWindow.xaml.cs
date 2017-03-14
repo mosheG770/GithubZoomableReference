@@ -162,5 +162,10 @@ namespace ZoomableReference
                 item.SetSoft();
             }
         }
+
+        private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
+        {
+            SettingsManager.IsSimpleMode = SimpleModeMI.IsChecked == true;
+        }
     }
 }

@@ -50,6 +50,8 @@ namespace ZoomableReference
 
             if (PreloadState != null)
                 state.SetState(PreloadState);
+
+            SettingsManager.ModeChange += focus.ModeChanged;
         }
 
         private void ImgHandler_SourceChange()
