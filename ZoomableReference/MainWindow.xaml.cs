@@ -16,7 +16,6 @@ namespace ZoomableReference
 
         FocusManager focus;
         DragManager drag;
-        PresetsManager presets;
         internal StateManager state;
 
         internal State PreloadState { get; set; }
@@ -32,7 +31,6 @@ namespace ZoomableReference
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             IsShowing = false;
-            //ManagerWindow.Manager.listMainWindow.Remove(this);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -47,12 +45,13 @@ namespace ZoomableReference
 
             focus = new FocusManager(this);
             drag = new DragManager(this);
-            presets = new PresetsManager(this);
 
             state = new StateManager(this);
 
             if (PreloadState != null)
                 state.SetState(PreloadState);
+
+            SettingsManager.ModeChange += focus.ModeChanged;
         }
 
         private void ImgHandler_SourceChange()
@@ -105,16 +104,6 @@ namespace ZoomableReference
                 LayoutRoot.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(color));
         }
 
-        private void SaveSizeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            presets.SaveNew();
-        }
-
-        private void LoadSizeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            presets.SetPreset();
-        }
-
         private void ResetBtn_Click(object sender, RoutedEventArgs e)
         {
             image.ResetZoomPan();
@@ -150,6 +139,29 @@ namespace ZoomableReference
         private void VertiFlipBtn_Click(object sender, RoutedEventArgs e)
         {
             image.VerticalFlip();
+        }
+
+        private void HideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl)
+                RotateModekCB.IsChecked = true;
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl)
+                RotateModekCB.IsChecked = false;
+        }
+
+        private void RotateModekCB_Checked(object sender, RoutedEventArgs e)
+        {
+            image.IsRotateMode = RotateModekCB.IsChecked == true;
         }
     }
 }

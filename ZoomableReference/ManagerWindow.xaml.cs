@@ -78,7 +78,8 @@ namespace ZoomableReference
         {
             foreach (var item in listMainWindow)
             {
-                item.Show();
+                if (item.IsShowing)
+                    item.Show();
             }
 
             List<State> states = new List<State>();
@@ -160,6 +161,11 @@ namespace ZoomableReference
             {
                 item.SetSoft();
             }
+        }
+
+        private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
+        {
+            SettingsManager.IsSimpleMode = SimpleModeMI.IsChecked == true;
         }
     }
 }

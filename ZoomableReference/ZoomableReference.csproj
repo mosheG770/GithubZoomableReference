@@ -95,30 +95,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CSV.cs" />
     <Compile Include="DragManager.cs" />
     <Compile Include="Ext.cs" />
     <Compile Include="FocusManager.cs" />
     <Compile Include="FutureWindow.xaml.cs">
       <DependentUpon>FutureWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageRotator.cs" />
+    <Compile Include="MainWindowPartial.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Preset.cs" />
     <Compile Include="Model\State.cs" />
     <Compile Include="Model\ZoomPan.cs" />
-    <Compile Include="PresetsFile.cs" />
-    <Compile Include="PresetsManager.cs" />
     <Compile Include="ProtectionWindow.xaml.cs">
       <DependentUpon>ProtectionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsManager.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="TextBoxSA.cs" />
     <Compile Include="UCZoomPanImage.xaml.cs">
       <DependentUpon>UCZoomPanImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowPositionSizeArgs.cs" />
     <Compile Include="WindowShowed.cs" />
     <Compile Include="ZoomPanImage.cs" />
     <Page Include="FutureWindow.xaml">

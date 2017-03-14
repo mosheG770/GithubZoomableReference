@@ -34,23 +34,33 @@ namespace ZoomableReference
         public void SetVisibilty(Visibility visi)
         {
             main.QuitBtn.Visibility = visi;
-            main.ColorBtn.Visibility = visi;
             main.MoveBtn.Visibility = visi;
-            main.ColorTxt.Visibility = visi;
-
-            main.LoadBtn.Visibility = visi;
-            main.UrlBtn.Visibility = visi;
             main.ResetBtn.Visibility = visi;
 
             main.HoriFlipBtn.Visibility = visi;
-
-            main.SizeCanvas.Visibility = visi;
+            main.VertiFlipBtn.Visibility = visi;
+            main.HideBtn.Visibility = visi;
+            main.RotateModekCB.Visibility = visi;
 
             if (visi == Visibility.Hidden)
             {
                 main.LoadUrlBtn.Visibility = visi;
                 main.UrlPathTxt.Visibility = visi;
             }
+
+            if (SettingsManager.IsSimpleMode)
+                visi = Visibility.Hidden;//ugly, but do the job better than run 2 times. with visi:hidden and than with visi:visible
+
+            main.ColorBtn.Visibility = visi;
+            main.ColorTxt.Visibility = visi;
+
+            main.LoadBtn.Visibility = visi;
+            main.UrlBtn.Visibility = visi;
+        }
+
+        internal void ModeChanged()
+        {
+            SetVisibilty(Visibility.Visible);
         }
 
 

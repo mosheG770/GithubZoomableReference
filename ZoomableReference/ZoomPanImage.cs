@@ -13,9 +13,15 @@ namespace ZoomableReference
 {
     class ZoomPanImage : Image
     {
+        ImageRotator rotator;
+
         TransformGroup transformGroup = new TransformGroup();
+
         ScaleTransform scaleTransform = new ScaleTransform();
         TranslateTransform translateTransform = new TranslateTransform();
+        RotateTransform rotateTransform = new RotateTransform();
+
+        public bool? IsRotateMode { get; set; } = false;
 
         private Point origin;
         private Point start;
@@ -38,8 +44,10 @@ namespace ZoomableReference
         {
             transformGroup.Children.Add(scaleTransform);
             transformGroup.Children.Add(translateTransform);
+            transformGroup.Children.Add(rotateTransform);
 
             this.RenderTransform = transformGroup;
+            rotator = new ImageRotator(this);
 
             MouseWheel += image_MouseWheel;
         }
@@ -55,7 +63,7 @@ namespace ZoomableReference
             scaleTransform.ScaleY = -scaleTransform.ScaleY;
         }
 
-        public void SetZoomPan(double scaleX, double scaleY, double posX, double posY)
+        public void SetZoomPan(double scaleX, double scaleY, double posX, double posY, double angle)
         {
 
             scaleTransform.ScaleX = scaleX;
@@ -63,60 +71,45 @@ namespace ZoomableReference
 
             translateTransform.X = posX;
             translateTransform.Y = posY;
+
+            rotateTransform.Angle = angle;
         }
 
         public void SetZoomPan(ZoomPan zp)
         {
-            SetZoomPan(zp.scaleX, zp.scaleY, zp.posX, zp.posY);
+            SetZoomPan(zp.scaleX, zp.scaleY, zp.posX, zp.posY, zp.angle);
         }
 
         public ZoomPan GetZoomPan()
         {
-            return ZoomPan.GetData(scaleTransform, translateTransform);
+            return ZoomPan.GetData(scaleTransform, translateTransform, rotateTransform);
         }
 
 
         public void ResetZoomPan()
         {
-            SetZoomPan(1, 1, 0, 0);
-        }
-
-        private void image_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            MouseWheelZoom(e);
-        }
-
-
-        private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MouseLeftUp();
-        }
-
-
-        private void image_MouseMove(object sender, MouseEventArgs e)
-        {
-            MouseMoveFunc(e);
-        }
-
-        private void image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MouseLeftDown(e);
+            SetZoomPan(1, 1, 0, 0, 0);
         }
 
 
         public void MouseWheelZoom(MouseWheelEventArgs e)
         {
-            double zoom = e.Delta > 0 ? 0.05 : -0.05;
-            if (scaleTransform.ScaleX > 0)
-                scaleTransform.ScaleX += zoom;
+            if (IsRotateMode == true)
+                rotator.RotateClock((e.Delta > 0) ? 5.0 : -5.0);
             else
-                scaleTransform.ScaleX -= zoom;
+            {
+                double zoom = e.Delta > 0 ? 0.05 : -0.05;
+                if (scaleTransform.ScaleX > 0)
+                    scaleTransform.ScaleX += zoom;
+                else
+                    scaleTransform.ScaleX -= zoom;
 
 
-            if (scaleTransform.ScaleY > 0)
-                scaleTransform.ScaleY += zoom;
-            else
-                scaleTransform.ScaleY -= zoom;
+                if (scaleTransform.ScaleY > 0)
+                    scaleTransform.ScaleY += zoom;
+                else
+                    scaleTransform.ScaleY -= zoom;
+            }
         }
 
         public void MouseLeftDown(MouseButtonEventArgs e)
@@ -139,5 +132,33 @@ namespace ZoomableReference
             translateTransform.X = origin.X - v.X;
             translateTransform.Y = origin.Y - v.Y;
         }
+
+        internal void AddAngle(double angle)
+        {
+            rotateTransform.Angle += angle;
+        }
+
+
+        #region mosue events
+        private void image_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            MouseWheelZoom(e);
+        }
+
+        private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MouseLeftUp();
+        }
+
+        private void image_MouseMove(object sender, MouseEventArgs e)
+        {
+            MouseMoveFunc(e);
+        }
+
+        private void image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MouseLeftDown(e);
+        }
+        #endregion
     }
 }
