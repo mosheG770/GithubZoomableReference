@@ -18,11 +18,12 @@ The first window that start is the window manager, when this window close, the p
  * 'Close all' - Close all the reference windwos.
  * 'Hide' - Hide all the windows, so you can do something else. (like take a break)
  * 'Show all' - Bring back all the windows.
- * 'Experimental window' - Create new Future window.
+ * 'Future window' - Create new Future window.
  * 'Soft' - Make all the future windows moveable again (will explain later)
  * 'Save state' - Save the current state of the Reference windows to file, include position and size of the window and the image.
  * 'Load state' - Load state from file, so you can continue from the last you stop.
  * 'Protection' - well, I have program that always make problem when I minimize it, so I make small window on the screen so now I can't click on the Minimize button of that program.
+ * **Menu** > Simple (checked) - Simple mode, mean less buttons in reference mode.
  
  
  Move on:
@@ -36,9 +37,17 @@ The first window that start is the window manager, when this window close, the p
  * 'Move' - Allow the user to drag the window on the screen.
  * 'Reset' - Reset the position and the size of the image in the window to the default values.
  * 'Color' - Change the color of the background of the window to the value of the field below it.
- * 'Save Size N Position' (and everything below it) - is not in use anymore, it's work, but it's better to use the manager window instead.
+ * 'Hide' - Minimize the window, so you can do somthing else and window won't cover the screen.
+ * '<-> - Flip the image (Mirror) horizontal.
+ * '^|' (little to the right) - flip the image vertical.
+ * 'Rotate' (Checked) - Rotate the image with the mouse wheel.
  
- Now you can drag and drop links and images on the window and it's will try to show them. (Not everything work yet)
+ Mouse and keyboard:
+ * Hold and drag left mouse button - Drag the image in the window.
+ * Use the mouse wheel - zoom-in and out.
+ * hold Left Control (ctrl) - Mouse wheel rotate the image.
+ 
+ You can drag and drop links and files of images on the window and it's will try to show them. (Not everything work yet)
  
  Last one:
  # Future window:
