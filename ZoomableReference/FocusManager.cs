@@ -47,7 +47,6 @@ namespace ZoomableReference
             main.HideBtn.Visibility = visi;
             main.RotateModekCB.Visibility = visi;
 
-            main.SizeCanvas.Visibility = visi;
 
             if (visi == Visibility.Hidden)
             {

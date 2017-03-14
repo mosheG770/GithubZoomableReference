@@ -31,12 +31,6 @@
         <TextBox x:Name="ColorTxt" HorizontalAlignment="Left" Height="23" Margin="0,80,0,0" TextWrapping="Wrap" Text="#FFCFD8DC" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="ResetBtn" Content="Reset" HorizontalAlignment="Left" Margin="28,40,0,0" VerticalAlignment="Top" Width="34" Click="ResetBtn_Click"/>
 
-        <Canvas x:Name="SizeCanvas" HorizontalAlignment="Left" Width="119" Margin="0,166,0,47">
-            <ComboBox x:Name="SizeCB" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" Canvas.Top="43"/>
-            <TextBox x:Name="SizeNameTxt" HorizontalAlignment="Left" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="Size name" VerticalAlignment="Top" Width="120"/>
-            <Button x:Name="SaveSizeBtn" Content="Save size N position" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Canvas.Top="23" Click="SaveSizeBtn_Click"/>
-            <Button x:Name="LoadSizeBtn" Content="Load" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Canvas.Left="1" Canvas.Top="65" Click="LoadSizeBtn_Click"/>
-        </Canvas>
         <Button x:Name="HoriFlipBtn" Content="&lt;&gt;" HorizontalAlignment="Left" Margin="0,103,0,0" VerticalAlignment="Top" Width="28" Click="Button_Click" Height="19"/>
         <Button Content="&lt;&gt;" x:Name="VertiFlipBtn" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="19" Height="19" Click="VertiFlipBtn_Click">
             <Button.RenderTransform>

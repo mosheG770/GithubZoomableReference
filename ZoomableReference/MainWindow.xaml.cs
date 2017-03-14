@@ -16,7 +16,6 @@ namespace ZoomableReference
 
         FocusManager focus;
         DragManager drag;
-        PresetsManager presets;
         internal StateManager state;
 
         internal State PreloadState { get; set; }
@@ -46,7 +45,6 @@ namespace ZoomableReference
 
             focus = new FocusManager(this);
             drag = new DragManager(this);
-            presets = new PresetsManager(this);
 
             state = new StateManager(this);
 
@@ -102,16 +100,6 @@ namespace ZoomableReference
 
             if (color.Length == 7)
                 LayoutRoot.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom(color));
-        }
-
-        private void SaveSizeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            presets.SaveNew();
-        }
-
-        private void LoadSizeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            presets.SetPreset();
         }
 
         private void ResetBtn_Click(object sender, RoutedEventArgs e)
