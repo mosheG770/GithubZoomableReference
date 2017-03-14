@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZoomableReference"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="Reference window" Height="350" Width="525"
         AllowDrop="True" Drop="Window_DragEnter"
         KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
 
