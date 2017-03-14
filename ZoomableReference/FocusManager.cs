@@ -43,6 +43,9 @@ namespace ZoomableReference
             main.ResetBtn.Visibility = visi;
 
             main.HoriFlipBtn.Visibility = visi;
+            main.VertiFlipBtn.Visibility = visi;
+            main.HideBtn.Visibility = visi;
+            main.RotateClockBtn.Visibility = visi;
 
             main.SizeCanvas.Visibility = visi;
 

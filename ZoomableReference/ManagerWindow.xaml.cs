@@ -78,7 +78,8 @@ namespace ZoomableReference
         {
             foreach (var item in listMainWindow)
             {
-                item.Show();
+                if (item.IsShowing)
+                    item.Show();
             }
 
             List<State> states = new List<State>();

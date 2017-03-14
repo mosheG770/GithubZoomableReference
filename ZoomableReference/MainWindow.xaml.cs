@@ -17,6 +17,7 @@ namespace ZoomableReference
         FocusManager focus;
         DragManager drag;
         PresetsManager presets;
+        ImageRotator rotator;
         internal StateManager state;
 
         internal State PreloadState { get; set; }
@@ -48,6 +49,7 @@ namespace ZoomableReference
             focus = new FocusManager(this);
             drag = new DragManager(this);
             presets = new PresetsManager(this);
+            rotator = new ImageRotator(this);
 
             state = new StateManager(this);
 
@@ -155,6 +157,11 @@ namespace ZoomableReference
         private void HideBtn_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void RotateClockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            rotator.RotateClock();
         }
     }
 }

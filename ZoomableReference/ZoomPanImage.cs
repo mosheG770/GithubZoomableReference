@@ -14,8 +14,15 @@ namespace ZoomableReference
     class ZoomPanImage : Image
     {
         TransformGroup transformGroup = new TransformGroup();
+
+        internal void RotateClock()
+        {
+            rotateTransform.Angle += 10;
+        }
+
         ScaleTransform scaleTransform = new ScaleTransform();
         TranslateTransform translateTransform = new TranslateTransform();
+        RotateTransform rotateTransform = new RotateTransform();
 
         private Point origin;
         private Point start;
@@ -38,6 +45,7 @@ namespace ZoomableReference
         {
             transformGroup.Children.Add(scaleTransform);
             transformGroup.Children.Add(translateTransform);
+            transformGroup.Children.Add(rotateTransform);
 
             this.RenderTransform = transformGroup;
 
@@ -55,7 +63,7 @@ namespace ZoomableReference
             scaleTransform.ScaleY = -scaleTransform.ScaleY;
         }
 
-        public void SetZoomPan(double scaleX, double scaleY, double posX, double posY)
+        public void SetZoomPan(double scaleX, double scaleY, double posX, double posY, double angle)
         {
 
             scaleTransform.ScaleX = scaleX;
@@ -63,22 +71,24 @@ namespace ZoomableReference
 
             translateTransform.X = posX;
             translateTransform.Y = posY;
+
+            rotateTransform.Angle = angle;
         }
 
         public void SetZoomPan(ZoomPan zp)
         {
-            SetZoomPan(zp.scaleX, zp.scaleY, zp.posX, zp.posY);
+            SetZoomPan(zp.scaleX, zp.scaleY, zp.posX, zp.posY, zp.angle);
         }
 
         public ZoomPan GetZoomPan()
         {
-            return ZoomPan.GetData(scaleTransform, translateTransform);
+            return ZoomPan.GetData(scaleTransform, translateTransform, rotateTransform);
         }
 
 
         public void ResetZoomPan()
         {
-            SetZoomPan(1, 1, 0, 0);
+            SetZoomPan(1, 1, 0, 0, 0);
         }
 
         private void image_MouseWheel(object sender, MouseWheelEventArgs e)

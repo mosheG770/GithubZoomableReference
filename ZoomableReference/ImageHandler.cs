@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 namespace ZoomableReference
 {
     /// <summary>
-    /// Handel the first load and others loads.
+    /// Handle the first load and others loads.
     /// </summary>
     class ImageHandler
     {
