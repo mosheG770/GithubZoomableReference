@@ -111,7 +111,12 @@ namespace ZoomableReference
                 scaleTransform.ScaleX += zoom;
             else
                 scaleTransform.ScaleX -= zoom;
-            scaleTransform.ScaleY += zoom;
+
+
+            if (scaleTransform.ScaleY > 0)
+                scaleTransform.ScaleY += zoom;
+            else
+                scaleTransform.ScaleY -= zoom;
         }
 
         public void MouseLeftDown(MouseButtonEventArgs e)
