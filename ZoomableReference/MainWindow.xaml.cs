@@ -146,5 +146,10 @@ namespace ZoomableReference
         {
             image.MouseMoveFunc(e);
         }
+
+        private void VertiFlipBtn_Click(object sender, RoutedEventArgs e)
+        {
+            image.VerticalFlip();
+        }
     }
 }
