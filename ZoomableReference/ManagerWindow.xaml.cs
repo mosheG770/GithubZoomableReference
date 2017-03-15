@@ -26,9 +26,9 @@ namespace ZoomableReference
         public static ManagerWindow Manager { get; private set; }
 
         ProtectionWindow pw;
-        public List<MainWindow> listMainWindow;
         List<State> tempStates;
-        List<FutureWindow> futureWindow = new List<FutureWindow>();
+        public List<MainWindow> listMainWindow;
+        List<FutureWindow> futureWindows = new List<FutureWindow>();
 
         public ManagerWindow()
         {
@@ -44,36 +44,11 @@ namespace ZoomableReference
             pw = new ProtectionWindow();
         }
 
-        private void CreateWindowBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mw = new MainWindow();
-            mw.Show();
-            mw.Activate();
-            listMainWindow.Add(mw);
-        }
+        //State Section:
 
-        private void CloseAllBtn_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in listMainWindow)
-            {
-                item.Close();
-            }
-            listMainWindow.Clear();
-        }
-
-        private void ProtectionBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (!pw.IsShowing)
-            {
-                pw = new ProtectionWindow();
-                pw.Show();
-            }
-            else
-            {
-                pw.Close();
-            }
-        }
-
+        /// <summary>
+        /// -- Save the state of the windows:
+        /// </summary>
         private void SaveStateBtn_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in listMainWindow)
@@ -84,10 +59,14 @@ namespace ZoomableReference
 
             List<State> states = new List<State>();
             foreach (var item in listMainWindow)
-            {
                 if (item.IsShowing)
                     states.Add(item.state.GetState());
-            }
+
+            foreach (var item in futureWindows)
+                if (item.IsShowing)
+                    states.Add(item.state.GetState());
+
+            HideAllBtn_Click(null, null);
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "ZoomableReferenceFile .zrf|*.zrf";
@@ -97,15 +76,21 @@ namespace ZoomableReference
                 File.WriteAllLines(sfd.FileName, lines);
             }
 
-            //write all the list to file, with json/.
+            //write the list to file, with json/.
             tempStates = states;
 
         }
 
+        /// <summary>
+        /// -- Load state:
+        /// </summary>
         private void LoadStateBtn_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "ZoomableReferenceFile .zrf|*.zrf";
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "ZoomableReferenceFile .zrf|*.zrf"
+            };
+
             if (ofd.ShowDialog() == true)
             {
                 foreach (var item in listMainWindow)
@@ -121,51 +106,121 @@ namespace ZoomableReference
 
                 foreach (var item in states)
                 {
-                    MainWindow mw = new MainWindow();
-                    mw.PreloadState = item;
-                    mw.Show();
-                    listMainWindow.Add(mw);
+                    if (item.IsFutureWindow)
+                    {
+                        FutureWindow fw = new FutureWindow();
+                        fw.PreloadState = item;
+                        fw.Show();
+                        futureWindows.Add(fw);
+                    }
+                    else
+                    {
+                        MainWindow mw = new MainWindow();
+                        mw.PreloadState = item;
+                        mw.Show();
+                        listMainWindow.Add(mw);
+                    }
                 }
             }
         }
 
+        
+        //Command section:
+        
+        /// <summary>
+        /// -- Close all the windows:
+        /// </summary>
+        private void CloseAllBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in listMainWindow)
+                item.Close();
+            foreach (var item in futureWindows)
+                item.Close();
+
+            listMainWindow.Clear();
+            futureWindows.Clear();
+        }
+
+        /// <summary>
+        /// -- Hide all the windows:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HideAllBtn_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in listMainWindow)
-            {
                 if (item.IsShowing)
                     item.WindowState = WindowState.Minimized;
-            }
+
+            foreach (var item in futureWindows)
+                if (item.IsShowing)
+                    item.WindowState = WindowState.Minimized;
         }
 
+        /// <summary>
+        /// -- Show all the windows:
+        /// </summary>
         private void ShowAllBtn_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in listMainWindow)
-            {
                 if (item.IsShowing)
                     item.WindowState = WindowState.Normal;
-            }
+
+            foreach (var item in futureWindows)
+                if (item.IsShowing)
+                    item.WindowState = WindowState.Maximized;
         }
 
+
+        //Create section:
+
+        /// <summary>
+        /// -- Create Layout window:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TestWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             FutureWindow fw = new FutureWindow();
             fw.Show();
             fw.Activate();
-            futureWindow.Add(fw);
+            futureWindows.Add(fw);
+        }
+
+        /// <summary>
+        /// -- Create Reference window:
+        /// </summary>
+        private void CreateWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            mw.Activate();
+            listMainWindow.Add(mw);
+        }
+
+        /// <summary>
+        /// -- Create Protection window:
+        /// </summary>
+        private void ProtectionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!pw.IsShowing)
+            {
+                pw = new ProtectionWindow();
+                pw.Show();
+            }
+            else
+                pw.Close();
         }
 
         private void TestWindowSoftBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in futureWindow)
-            {
+            foreach (var item in futureWindows)
                 item.SetSoft();
-            }
         }
 
         private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
         {
-            SettingsManager.IsSimpleMode = SimpleModeMI.IsChecked == true;
+            SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);
         }
     }
 }

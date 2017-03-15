@@ -98,10 +98,12 @@
     <Compile Include="DragManager.cs" />
     <Compile Include="Ext.cs" />
     <Compile Include="FocusManager.cs" />
+    <Compile Include="IStateManager.cs" />
     <Compile Include="FutureWindow.xaml.cs">
       <DependentUpon>FutureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageRotator.cs" />
+    <Compile Include="LayoutStateManager.cs" />
     <Compile Include="MainWindowPartial.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
