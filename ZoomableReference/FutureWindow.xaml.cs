@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ZoomableReference.Model;
 
 namespace ZoomableReference
 {
@@ -25,7 +26,9 @@ namespace ZoomableReference
     public partial class FutureWindow : Window
     {
         public bool IsShowing { get; set; }
-
+        internal LayoutStateManager state { get; set; }
+        internal State PreloadState { get; set; }
+        internal ImageHandler imgHandler { get; set; }
 
         public FutureWindow()
         {
@@ -36,35 +39,23 @@ namespace ZoomableReference
             KeyUp += FutureWindow_KeyUp;
         }
 
-        private void FutureWindow_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.LeftCtrl)
-                border.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-        }
-
-        private void FutureWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.LeftCtrl)
-                border.Background = new SolidColorBrush(Color.FromArgb(1, 1, 1, 1));
-        }
-
-
-        private void FutureWindow_Closed(object sender, EventArgs e)
-        {
-            IsShowing = false;
-        }
-
         private void FutureWindow_ContentRendered(object sender, EventArgs e)
         {
+            imgHandler = new ImageHandler(image);
+
             IsShowing = true;
             image.MyBorder = border;
 
             WindowState = WindowState.Maximized;
             this.Topmost = true;
+
+            state = new LayoutStateManager(this);
+
+            if (PreloadState != null)
+                state.SetState(PreloadState);
         }
 
-
-
+        
         public const int WS_EX_TRANSPARENT = 0x00000020; public const int GWL_EXSTYLE = (-20);
 
         [DllImport("user32.dll")]
@@ -85,6 +76,27 @@ namespace ZoomableReference
             ToolsGrid.Visibility = Visibility.Hidden;
         }
 
+        #region events region
+        private void FutureWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl)
+                border.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+        }
+
+        private void FutureWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl)
+                border.Background = new SolidColorBrush(Color.FromArgb(1, 1, 1, 1));
+        }
+
+
+        private void FutureWindow_Closed(object sender, EventArgs e)
+        {
+            IsShowing = false;
+        }
+#endregion
+
+
         public void SetSoft()
         {
             // Get this window's handle         
@@ -104,11 +116,7 @@ namespace ZoomableReference
 
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == true)
-            {
-                image.Source = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
-            }
+            imgHandler.BrowseImage();
         }
 
 
