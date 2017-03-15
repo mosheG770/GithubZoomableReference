@@ -1,10 +1,15 @@
 # ZoomableReference
-Maybe complex program to help me paint.
+Make painting with reference much more easier.
 
-basically, this WPF is topmost window with one image element, by the time it's become more and more complex, use it if you want, but I not except you to understand everything in the first time.
+basically, this WPF is topmost window with one image element and few buttons, by the time it's become much more: Saving windows, drag-drop, rotation and much more.
 
 # Download
 Click on 'Release' or [here](https://github.com/mosheG770/GithubZoomableReference/releases/latest).
+
+than download the Zip file (ZoomableReference.zip).
+1. open the zip file and drag all the files in to new folder (I create folder in desktop for that)
+2. double click on the file 'ZoomableReference.exe' to start the program.
+
 
 # How to use:
 The program have 3 windows: Manager window, Reference window, and Future window (code name). 
