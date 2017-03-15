@@ -171,6 +171,15 @@ namespace ZoomableReference
                     item.WindowState = WindowState.Maximized;
         }
 
+        /// <summary>
+        /// -- Set all the layout windows status to: Soft
+        /// </summary>
+        private void TestWindowSoftBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in futureWindows)
+                item.SetSoft();
+        }
+
 
         //Create section:
 
@@ -212,12 +221,12 @@ namespace ZoomableReference
                 pw.Close();
         }
 
-        private void TestWindowSoftBtn_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in futureWindows)
-                item.SetSoft();
-        }
 
+        /// <summary>
+        /// -- Simple mode: toggle by the CheckBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
         {
             SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);
