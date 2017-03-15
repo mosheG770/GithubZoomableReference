@@ -145,5 +145,30 @@ namespace ZoomableReference
         {
             this.Close();
         }
+
+        private void ResetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            image.ResetZoomPan();
+        }
+
+        private void RotateModekCB_Checked(object sender, RoutedEventArgs e)
+        {
+            image.IsRotateMode = RotateModekCB.IsChecked == true;
+        }
+
+        private void HideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void VertiFlipBtn_Click(object sender, RoutedEventArgs e)
+        {
+            image.VerticalFlip();
+        }
+
+        private void HoriFlipBtn_Click(object sender, RoutedEventArgs e)
+        {
+            image.HorizontalFlip();
+        }
     }
 }
