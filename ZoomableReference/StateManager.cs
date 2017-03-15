@@ -10,7 +10,7 @@ using ZoomableReference.Model;
 
 namespace ZoomableReference
 {
-    class StateManager
+    class StateManager : IStateManager
     {
         MainWindow main;
         public StateManager(MainWindow mw)
@@ -36,7 +36,7 @@ namespace ZoomableReference
             throw new NotImplementedException("We still working on this area.");
         }
 
-        internal State GetState()
+        public State GetState()
         {
             State st = new State();
             st.imageSource = main.imgHandler.LastURI;

@@ -38,7 +38,7 @@ namespace ZoomableReference
             {
                 LastURI = filePath;
                 img.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
-                SourceChange();
+                SourceChange?.Invoke();
             }
             catch (Exception e)
             {
