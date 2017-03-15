@@ -42,6 +42,8 @@ namespace ZoomableReference
         private void ManagerWindow_Loaded(object sender, RoutedEventArgs e)
         {
             pw = new ProtectionWindow();
+            int[] arr = new int[1];
+            arr = arr.OrderBy(o => o).ToArray();
         }
 
         //State Section:

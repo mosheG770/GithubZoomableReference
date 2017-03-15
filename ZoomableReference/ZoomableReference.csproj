@@ -99,8 +99,8 @@
     <Compile Include="Ext.cs" />
     <Compile Include="FocusManager.cs" />
     <Compile Include="IStateManager.cs" />
-    <Compile Include="FutureWindow.xaml.cs">
-      <DependentUpon>FutureWindow.xaml</DependentUpon>
+    <Compile Include="LayoutWindow.xaml.cs">
+      <DependentUpon>LayoutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageRotator.cs" />
     <Compile Include="LayoutStateManager.cs" />
@@ -122,7 +122,7 @@
     </Compile>
     <Compile Include="WindowShowed.cs" />
     <Compile Include="ZoomPanImage.cs" />
-    <Page Include="FutureWindow.xaml">
+    <Page Include="LayoutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

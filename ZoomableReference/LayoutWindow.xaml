@@ -8,7 +8,7 @@
         Background="#00000000"
         AllowsTransparency="True"
         WindowStyle="None"
-        Title="FutureWindow" Height="300" Width="300">
+        Title="LayoutWindow" Height="300" Width="300">
     <Grid >
         <Border Name="border" MouseLeftButtonUp="border_MouseLeftButtonUp"
                 MouseLeftButtonDown="border_MouseLeftButtonDown"
