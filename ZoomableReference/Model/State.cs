@@ -10,6 +10,7 @@ namespace ZoomableReference.Model
     class State
     {
         public bool IsFutureWindow { get; set; }
+        public bool IsLocked { get; set; }
         public ZoomPan ZoomPan { get; set; }
         public string imageSource { get; set; }
         public Preset Preset { get; set; }

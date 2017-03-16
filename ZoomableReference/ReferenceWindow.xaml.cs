@@ -163,5 +163,21 @@ namespace ZoomableReference
         {
             image.IsRotateMode = RotateModekCB.IsChecked == true;
         }
+
+        private void LockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(LockBorder.Visibility == Visibility.Hidden)
+            {
+                LockBtn.Content = "Unlock";
+                LockBorder.Visibility = Visibility.Visible;
+                focus.IsLocked = true;
+            }
+            else
+            {
+                LockBtn.Content = "Lock";
+                LockBorder.Visibility = Visibility.Hidden;
+                focus.IsLocked = false;
+            }
+        }
     }
 }

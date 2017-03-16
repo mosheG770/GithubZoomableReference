@@ -10,6 +10,9 @@ namespace ZoomableReference
     class FocusManager
     {
         ReferenceWindow main;
+
+        public bool IsLocked { get; set; }
+
         public FocusManager(ReferenceWindow win)
         {
             main = win;
@@ -33,6 +36,10 @@ namespace ZoomableReference
         /// <param name="visi"></param>
         public void SetVisibilty(Visibility visi)
         {
+            main.LockBtn.Visibility = visi;
+            if (IsLocked)
+                visi = Visibility.Hidden;
+
             main.QuitBtn.Visibility = visi;
             main.MoveBtn.Visibility = visi;
             main.ResetBtn.Visibility = visi;
