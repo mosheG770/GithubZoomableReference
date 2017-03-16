@@ -23,7 +23,7 @@
                 <MenuItem Checked="SimpleModeMI_Checked" Unchecked="SimpleModeMI_Checked" x:Name="SimpleModeMI" Header="Simple" IsCheckable="True"/>
             </MenuItem>
         </Menu>
-        <TextBlock HorizontalAlignment="Left" Margin="22,39,0,0" TextWrapping="Wrap" Text="Create new Window:" VerticalAlignment="Top" Width="156"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,39,0,0" TextWrapping="Wrap" Text="Create new Window:" VerticalAlignment="Top" Width="193"/>
         <TextBlock Margin="17,138,10,0" TextWrapping="Wrap" Text="Windows commands:" VerticalAlignment="Top"/>
         <Separator Height="3" Margin="0,92,0,0" VerticalAlignment="Top"/>
 
