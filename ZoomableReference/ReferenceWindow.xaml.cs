@@ -14,7 +14,7 @@ namespace ZoomableReference
     {
         internal ImageHandler imgHandler;
 
-        FocusManager focus;
+        internal FocusManager focus;
         DragManager drag;
         internal StateManager state;
 

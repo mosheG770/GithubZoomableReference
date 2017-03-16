@@ -21,6 +21,7 @@ namespace ZoomableReference
         public void SetState(State st)
         {
             main.imgHandler.LoadImage(st.imageSource);
+            main.focus.IsLocked = st.IsLocked;
 
             main.Top = st.Preset.WindowPosition.X;
             main.Left = st.Preset.WindowPosition.Y;
@@ -39,6 +40,7 @@ namespace ZoomableReference
         public State GetState()
         {
             State st = new State();
+            st.IsLocked = main.focus.IsLocked;
             st.imageSource = main.imgHandler.LastURI;
 
             st.Preset = new Preset()

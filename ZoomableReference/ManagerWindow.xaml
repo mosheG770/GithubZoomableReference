@@ -5,27 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZoomableReference"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="339.333" Width="300">
+        Title="ManagerWindow" Height="304.333" Width="300">
 
 
     <Grid>
         <Button x:Name="CreateWindowBtn" Content="Rreference window" HorizontalAlignment="Left" Margin="22,60,0,0" VerticalAlignment="Top" Width="113" Click="CreateWindowBtn_Click"/>
-        <Button x:Name="CloseAllBtn" Content="Close" HorizontalAlignment="Left" Margin="17,181,0,0" VerticalAlignment="Top" Width="75" Click="CloseAllBtn_Click"/>
+        <Button x:Name="CloseAllBtn" Content="Close" HorizontalAlignment="Left" Margin="17,145,0,0" VerticalAlignment="Top" Width="75" Click="CloseAllBtn_Click"/>
         <Button x:Name="ProtectionBtn" Content="Protection" HorizontalAlignment="Left" Margin="222,23,0,0" VerticalAlignment="Top" Width="60" Click="ProtectionBtn_Click"/>
-        <Button x:Name="SaveStateBtn" Content="Save state" HorizontalAlignment="Left" Margin="60,271,0,0" VerticalAlignment="Top" Width="75" Click="SaveStateBtn_Click"/>
-        <Button x:Name="LoadStateBtn" Content="Load state" HorizontalAlignment="Left" Margin="140,271,0,0" VerticalAlignment="Top" Width="75" Click="LoadStateBtn_Click"/>
-        <Button x:Name="HideAllBtn" Content="Hide" HorizontalAlignment="Left" Margin="97,156,0,0" VerticalAlignment="Top" Width="75" Click="HideAllBtn_Click"/>
-        <Button x:Name="ShowAllBtn" Content="Show" HorizontalAlignment="Left" Margin="17,156,0,0" VerticalAlignment="Top" Width="75" Click="ShowAllBtn_Click"/>
+        <Button x:Name="SaveStateBtn" Content="Save state" HorizontalAlignment="Left" Margin="60,239,0,0" VerticalAlignment="Top" Width="75" Click="SaveStateBtn_Click"/>
+        <Button x:Name="LoadStateBtn" Content="Load state" HorizontalAlignment="Left" Margin="140,239,0,0" VerticalAlignment="Top" Width="75" Click="LoadStateBtn_Click"/>
+        <Button x:Name="HideAllBtn" Content="Hide" HorizontalAlignment="Left" Margin="97,120,0,0" VerticalAlignment="Top" Width="75" Click="HideAllBtn_Click"/>
+        <Button x:Name="ShowAllBtn" Content="Show" HorizontalAlignment="Left" Margin="17,120,0,0" VerticalAlignment="Top" Width="75" Click="ShowAllBtn_Click"/>
         <Button x:Name="LayoutWindowBtn" Content="Layout window" HorizontalAlignment="Left" Margin="153,60,0,0" VerticalAlignment="Top" Width="92" Click="TestWindowBtn_Click"/>
-        <Button x:Name="TestWindowSoftBtn" Content="Soft" HorizontalAlignment="Left" Margin="191,156,0,0" VerticalAlignment="Top" Width="75" Click="TestWindowSoftBtn_Click"/>
+        <Button x:Name="TestWindowSoftBtn" Content="Soft" HorizontalAlignment="Left" Margin="191,120,0,0" VerticalAlignment="Top" Width="75" Click="TestWindowSoftBtn_Click"/>
         <Menu Height="18" VerticalAlignment="Top">
             <MenuItem Header="Mode">
                 <MenuItem Checked="SimpleModeMI_Checked" Unchecked="SimpleModeMI_Checked" x:Name="SimpleModeMI" Header="Simple" IsCheckable="True"/>
             </MenuItem>
         </Menu>
         <TextBlock HorizontalAlignment="Left" Margin="22,39,0,0" TextWrapping="Wrap" Text="Create new Window:" VerticalAlignment="Top" Width="193"/>
-        <TextBlock Margin="17,138,10,0" TextWrapping="Wrap" Text="Windows commands:" VerticalAlignment="Top"/>
+        <TextBlock Margin="17,102,10,0" TextWrapping="Wrap" Text="Windows commands:" VerticalAlignment="Top"/>
         <Separator Height="3" Margin="0,92,0,0" VerticalAlignment="Top"/>
+        <Separator Height="2" Margin="0,180,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

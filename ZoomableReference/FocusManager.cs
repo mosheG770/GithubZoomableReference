@@ -11,7 +11,20 @@ namespace ZoomableReference
     {
         ReferenceWindow main;
 
-        public bool IsLocked { get; set; }
+        private bool isLocked;
+        public bool IsLocked
+        {
+            get { return isLocked; }
+            set
+            {
+                isLocked = value;
+                ModeChanged();
+                if (isLocked)
+                    main.ResizeMode = ResizeMode.NoResize;
+                else
+                    main.ResizeMode = ResizeMode.CanResize;
+            }
+        }
 
         public FocusManager(ReferenceWindow win)
         {
