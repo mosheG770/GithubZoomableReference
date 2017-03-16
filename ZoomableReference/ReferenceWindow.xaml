@@ -1,4 +1,4 @@
-﻿<Window x:Class="ZoomableReference.MainWindow"
+﻿<Window x:Class="ZoomableReference.ReferenceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -38,7 +38,7 @@
             </Button.RenderTransform>
         </Button>
         <Button x:Name="HideBtn" Content="Hide" HorizontalAlignment="Left" Margin="0,141,0,0" VerticalAlignment="Top" Width="75" Click="HideBtn_Click"/>
-        <CheckBox x:Name="RotateModekCB" Checked="RotateModekCB_Checked" Unchecked="RotateModekCB_Checked" Content="Rotate" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="56" Height="19"/>
+        <CheckBox x:Name="RotateModekCB"  BorderThickness="2" Checked="RotateModekCB_Checked" Unchecked="RotateModekCB_Checked" Content="Rotate" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="64" Height="19"/>
 
     </Grid>
 </Window>

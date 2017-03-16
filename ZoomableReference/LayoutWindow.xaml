@@ -18,9 +18,9 @@
             <local:ZoomPanImage x:Name="image" Source="D:\junk\snow-bunny.jpg" Opacity="{Binding ElementName=OpacitySlider, Path=Value}" RenderTransformOrigin="0.5,0.5"
                                 SnapsToDevicePixels="True" Margin="0,0,0,31"/>
         </Border>
-        <Grid x:Name="ToolsGrid" Margin="10,0,0,0" Background="#30000000" Height="254" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79">
+        <Grid x:Name="ToolsGrid" Margin="10,0,0,0" Background="#40000000" Height="254" VerticalAlignment="Top" HorizontalAlignment="Left" Width="116">
             <Button x:Name="SolidBtn" Content="Solid" HorizontalAlignment="Left" Margin="0,222,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-            <Slider x:Name="OpacitySlider" Margin="10,10,28,0" Maximum="1" Minimum="0" Value="0.5" VerticalAlignment="Top"/>
+            <Slider x:Name="OpacitySlider" Margin="0,10,0,0" Maximum="1" Minimum="0" Value="0.5" VerticalAlignment="Top"/>
             <Button x:Name="LoadBtn" Content="Load" HorizontalAlignment="Left" Margin="0,166,0,0" VerticalAlignment="Top" Width="75" Click="LoadBtn_Click"/>
             <Button x:Name="CloseBtn" Content="Close" HorizontalAlignment="Left" Margin="0,33,0,0" VerticalAlignment="Top" Width="75" Click="CloseBtn_Click"/>
 
@@ -34,7 +34,7 @@
                 </Button.RenderTransform>
             </Button>
             <Button x:Name="HideBtn" Content="Hide" HorizontalAlignment="Left" Margin="0,141,0,0" VerticalAlignment="Top" Width="75" Click="HideBtn_Click"/>
-            <CheckBox x:Name="RotateModekCB" BorderThickness="3" Checked="RotateModekCB_Checked" Unchecked="RotateModekCB_Checked" Content="Rotate" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="56" Height="19"/>
+            <CheckBox x:Name="RotateModekCB" BorderThickness="2" Checked="RotateModekCB_Checked" Unchecked="RotateModekCB_Checked" Content="Rotate" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="56" Height="19"/>
 
         </Grid>
     </Grid>

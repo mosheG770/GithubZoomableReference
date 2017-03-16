@@ -12,8 +12,8 @@ namespace ZoomableReference
 {
     class StateManager : IStateManager
     {
-        MainWindow main;
-        public StateManager(MainWindow mw)
+        ReferenceWindow main;
+        public StateManager(ReferenceWindow mw)
         {
             main = mw;
         }

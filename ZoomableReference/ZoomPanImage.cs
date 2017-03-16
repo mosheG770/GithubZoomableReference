@@ -40,6 +40,7 @@ namespace ZoomableReference
             }
         }
 
+
         public ZoomPanImage()
         {
             transformGroup.Children.Add(scaleTransform);
@@ -47,6 +48,7 @@ namespace ZoomableReference
             transformGroup.Children.Add(rotateTransform);
 
             this.RenderTransform = transformGroup;
+            
             rotator = new ImageRotator(this);
 
             MouseWheel += image_MouseWheel;
@@ -65,7 +67,6 @@ namespace ZoomableReference
 
         public void SetZoomPan(double scaleX, double scaleY, double posX, double posY, double angle)
         {
-
             scaleTransform.ScaleX = scaleX;
             scaleTransform.ScaleY = scaleY;
 
@@ -91,7 +92,10 @@ namespace ZoomableReference
             SetZoomPan(1, 1, 0, 0, 0);
         }
 
-
+        /// <summary>
+        /// -- Zoom or Rotate
+        /// </summary>
+        /// <param name="e"></param>
         public void MouseWheelZoom(MouseWheelEventArgs e)
         {
             if (IsRotateMode == true)

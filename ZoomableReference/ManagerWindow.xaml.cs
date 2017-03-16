@@ -27,7 +27,7 @@ namespace ZoomableReference
 
         ProtectionWindow pw;
         List<State> tempStates;
-        public List<MainWindow> listMainWindow;
+        public List<ReferenceWindow> listMainWindow;
         List<FutureWindow> futureWindows = new List<FutureWindow>();
 
         public ManagerWindow()
@@ -35,7 +35,7 @@ namespace ZoomableReference
             Manager = this;
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             InitializeComponent();
-            listMainWindow = new List<MainWindow>();
+            listMainWindow = new List<ReferenceWindow>();
             Loaded += ManagerWindow_Loaded;
         }
 
@@ -115,7 +115,7 @@ namespace ZoomableReference
                     }
                     else
                     {
-                        MainWindow mw = new MainWindow();
+                        ReferenceWindow mw = new ReferenceWindow();
                         mw.PreloadState = item;
                         mw.Show();
                         listMainWindow.Add(mw);
@@ -201,7 +201,7 @@ namespace ZoomableReference
         /// </summary>
         private void CreateWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            ReferenceWindow mw = new ReferenceWindow();
             mw.Show();
             mw.Activate();
             listMainWindow.Add(mw);
