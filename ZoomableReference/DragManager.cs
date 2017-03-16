@@ -23,7 +23,6 @@ namespace ZoomableReference
         public void LoadDrag(object sender, DragEventArgs e, Action<string> ImageLoad)
         {
             var formats = e.Data.GetFormats();
-            //MessageBox.Show(formats.ToOneString());
 
             if (formats.Contains(DataFormats.FileDrop))
             {

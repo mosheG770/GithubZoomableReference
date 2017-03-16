@@ -9,8 +9,8 @@ namespace ZoomableReference
 {
     class FocusManager
     {
-        MainWindow main;
-        public FocusManager(MainWindow win)
+        ReferenceWindow main;
+        public FocusManager(ReferenceWindow win)
         {
             main = win;
 

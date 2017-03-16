@@ -27,7 +27,7 @@ namespace ZoomableReference
 
         ProtectionWindow pw;
         List<State> tempStates;
-        public List<MainWindow> listMainWindow;
+        public List<ReferenceWindow> listMainWindow;
         List<FutureWindow> futureWindows = new List<FutureWindow>();
 
         public ManagerWindow()
@@ -35,7 +35,7 @@ namespace ZoomableReference
             Manager = this;
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             InitializeComponent();
-            listMainWindow = new List<MainWindow>();
+            listMainWindow = new List<ReferenceWindow>();
             Loaded += ManagerWindow_Loaded;
         }
 
@@ -115,7 +115,7 @@ namespace ZoomableReference
                     }
                     else
                     {
-                        MainWindow mw = new MainWindow();
+                        ReferenceWindow mw = new ReferenceWindow();
                         mw.PreloadState = item;
                         mw.Show();
                         listMainWindow.Add(mw);
@@ -171,6 +171,15 @@ namespace ZoomableReference
                     item.WindowState = WindowState.Maximized;
         }
 
+        /// <summary>
+        /// -- Set all the layout windows status to: Soft
+        /// </summary>
+        private void TestWindowSoftBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in futureWindows)
+                item.SetSoft();
+        }
+
 
         //Create section:
 
@@ -192,7 +201,7 @@ namespace ZoomableReference
         /// </summary>
         private void CreateWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            ReferenceWindow mw = new ReferenceWindow();
             mw.Show();
             mw.Activate();
             listMainWindow.Add(mw);
@@ -212,12 +221,12 @@ namespace ZoomableReference
                 pw.Close();
         }
 
-        private void TestWindowSoftBtn_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in futureWindows)
-                item.SetSoft();
-        }
 
+        /// <summary>
+        /// -- Simple mode: toggle by the CheckBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
         {
             SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);

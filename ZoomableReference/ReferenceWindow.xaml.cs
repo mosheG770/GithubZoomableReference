@@ -10,7 +10,7 @@ using ZoomableReference.Model;
 
 namespace ZoomableReference
 {
-    public partial class MainWindow : Window
+    public partial class ReferenceWindow : Window
     {
         internal ImageHandler imgHandler;
 
@@ -21,7 +21,7 @@ namespace ZoomableReference
         internal State PreloadState { get; set; }
         public bool IsShowing { get; set; }
 
-        public MainWindow()
+        public ReferenceWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;

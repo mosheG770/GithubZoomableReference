@@ -9,7 +9,7 @@ namespace ZoomableReference
     /// <summary>
     /// Patital class for one line event. (UI, buttons...)
     /// </summary>
-    partial class MainWindow
+    partial class ReferenceWindow
     {
 
     }
