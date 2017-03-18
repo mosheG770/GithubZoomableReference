@@ -15,8 +15,10 @@
                 MouseMove="border_MouseMove"
                 MouseWheel="border_MouseWheel">
 
-            <local:ZoomPanImage x:Name="image" Source="D:\junk\snow-bunny.jpg" Opacity="{Binding ElementName=OpacitySlider, Path=Value}" RenderTransformOrigin="0.5,0.5"
+            <Border x:Name="MoveBorder">
+                <local:ZoomPanImage x:Name="image" Source="D:\junk\snow-bunny.jpg" Opacity="{Binding ElementName=OpacitySlider, Path=Value}" RenderTransformOrigin="0.5,0.5"
                                 SnapsToDevicePixels="True" Margin="0,0,0,31"/>
+            </Border>
         </Border>
 
         <Border x:Name="ToolsGrid" BorderThickness="1" BorderBrush="Black" Margin="10,0,0,0" Background="#40ffffff" Height="254" VerticalAlignment="Top" HorizontalAlignment="Left" Width="116">

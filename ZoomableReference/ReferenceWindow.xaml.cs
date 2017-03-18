@@ -36,6 +36,7 @@ namespace ZoomableReference
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             IsShowing = true;
+            image.MoveBorder = eventBorder;
             image.MyBorder = border;
 
             imgHandler = new ImageHandler(image);

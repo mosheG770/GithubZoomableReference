@@ -40,15 +40,33 @@ namespace ZoomableReference
             }
         }
 
+        private Border moveBorder;
+        public Border MoveBorder
+        {
+            get
+            {
+                return moveBorder;
+            }
+            set
+            {
+                moveBorder = value;
+                MoveBorder.RenderTransform = translateTransform;
+            }
+        }
 
+        /// <summary>
+        /// Remember to add MoveBorder before MyBorder. 
+        /// That ugly again, but it's only me here.
+        /// </summary>
         public ZoomPanImage()
         {
             transformGroup.Children.Add(scaleTransform);
-            transformGroup.Children.Add(translateTransform);
+            //transformGroup.Children.Add(translateTransform);
             transformGroup.Children.Add(rotateTransform);
 
+
             this.RenderTransform = transformGroup;
-            
+
             rotator = new ImageRotator(this);
 
             MouseWheel += image_MouseWheel;

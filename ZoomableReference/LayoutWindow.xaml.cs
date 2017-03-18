@@ -44,6 +44,7 @@ namespace ZoomableReference
             imgHandler = new ImageHandler(image);
 
             IsShowing = true;
+            image.MoveBorder = MoveBorder;
             image.MyBorder = border;
 
             WindowState = WindowState.Maximized;
