@@ -32,6 +32,7 @@ namespace ZoomableReference
 
         public ManagerWindow()
         {
+            Topmost = true;
             Manager = this;
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             InitializeComponent();
@@ -144,8 +145,6 @@ namespace ZoomableReference
         /// <summary>
         /// -- Hide all the windows:
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void HideAllBtn_Click(object sender, RoutedEventArgs e)
         {
             foreach (var item in listMainWindow)
@@ -186,8 +185,6 @@ namespace ZoomableReference
         /// <summary>
         /// -- Create Layout window:
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TestWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             FutureWindow fw = new FutureWindow();
@@ -225,8 +222,6 @@ namespace ZoomableReference
         /// <summary>
         /// -- Simple mode: toggle by the CheckBox
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
         {
             SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);
