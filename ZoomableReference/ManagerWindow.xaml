@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZoomableReference"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="304.333" Width="300">
+        Title="ManagerWindow" Height="304.333" Width="541">
 
 
     <Grid>
@@ -25,8 +25,18 @@
         </Menu>
         <TextBlock HorizontalAlignment="Left" Margin="22,39,0,0" TextWrapping="Wrap" Text="Create new Window:" VerticalAlignment="Top" Width="193"/>
         <TextBlock Margin="17,102,10,0" TextWrapping="Wrap" Text="Windows commands:" VerticalAlignment="Top"/>
-        <Separator Height="3" Margin="0,92,0,0" VerticalAlignment="Top"/>
-        <Separator Height="2" Margin="0,180,0,0" VerticalAlignment="Top"/>
+        <Separator Height="3" Margin="0,92,251,0" VerticalAlignment="Top"/>
+        <Separator Height="2" Margin="0,180,251,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="WindowListBox" Margin="287,48,10,10">
+            <ListBox.ItemTemplate>
+                <ItemContainerTemplate>
+                    <StackPanel>
+                        <TextBox IsEnabled="False" Text="{Binding imageSource}"/>
+                    </StackPanel>
+                </ItemContainerTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Referesh" Margin="448,23,10,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

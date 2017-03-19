@@ -16,6 +16,7 @@ namespace ZoomableReference
 
         internal FocusManager focus;
         DragManager drag;
+        ReferenceWindowCommander commander;
         internal StateManager state;
 
         internal State PreloadState { get; set; }
@@ -31,6 +32,7 @@ namespace ZoomableReference
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             IsShowing = false;
+            SettingsManager.ModeChange -= focus.ModeChanged;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -52,6 +54,7 @@ namespace ZoomableReference
             if (PreloadState != null)
                 state.SetState(PreloadState);
 
+            commander = new ReferenceWindowCommander(this);
             SettingsManager.ModeChange += focus.ModeChanged;
         }
 
@@ -68,7 +71,7 @@ namespace ZoomableReference
 
         private void QuitBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            commander.Close();
         }
 
         private void UrlBtn_Click(object sender, RoutedEventArgs e)
@@ -144,7 +147,7 @@ namespace ZoomableReference
 
         private void HideBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
+            commander.Minimize();
         }
 
 

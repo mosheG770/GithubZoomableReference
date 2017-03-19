@@ -2,9 +2,11 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,8 +29,9 @@ namespace ZoomableReference
 
         ProtectionWindow pw;
         List<State> tempStates;
-        public List<ReferenceWindow> listMainWindow;
+        public List<ReferenceWindow> referenceWindows;
         List<FutureWindow> futureWindows = new List<FutureWindow>();
+        long listTimeStamp = 0;
 
         public ManagerWindow()
         {
@@ -36,14 +39,49 @@ namespace ZoomableReference
             Manager = this;
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             InitializeComponent();
-            listMainWindow = new List<ReferenceWindow>();
+            referenceWindows = new List<ReferenceWindow>();
             Loaded += ManagerWindow_Loaded;
+            this.Activated += ManagerWindow_Activated;
+        }
+
+        private void ManagerWindow_Activated(object sender, EventArgs e)
+        {
+            RefreshList();
         }
 
         private void ManagerWindow_Loaded(object sender, RoutedEventArgs e)
         {
             pw = new ProtectionWindow();
+            WindowListBox.ItemsSource = referenceWindows;
         }
+
+
+        /// <summary>
+        /// -- Clear the list, making new items for the list.
+        /// Checking with time stamp if there is already updated data (useful if there is lot of windiws)
+        /// </summary>
+        private void RefreshList()
+        {
+            var syncCont = SynchronizationContext.Current;
+            WindowListBox.ItemsSource = null;
+            Task.Run(() =>
+            {
+                long timeStamp = DateTime.Now.Ticks;
+                var results = referenceWindows.Select(o => o.state.GetState())
+                    .Concat(futureWindows.Select(t => t.state.GetState()));
+
+                syncCont.Post(o =>
+                {
+                    if(timeStamp >= listTimeStamp)
+                    {
+                    WindowListBox.ItemsSource = results;
+                        listTimeStamp = timeStamp;
+                    }
+                }, null);
+            });
+
+        }
+
 
         //State Section:
 
@@ -52,14 +90,14 @@ namespace ZoomableReference
         /// </summary>
         private void SaveStateBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in listMainWindow)
+            foreach (var item in referenceWindows)
             {
                 if (item.IsShowing)
                     item.Show();
             }
 
             List<State> states = new List<State>();
-            foreach (var item in listMainWindow)
+            foreach (var item in referenceWindows)
                 if (item.IsShowing)
                     states.Add(item.state.GetState());
 
@@ -94,10 +132,10 @@ namespace ZoomableReference
 
             if (ofd.ShowDialog() == true)
             {
-                foreach (var item in listMainWindow)
+                foreach (var item in referenceWindows)
                     item.Close();
 
-                listMainWindow.Clear();
+                referenceWindows.Clear();
 
                 List<State> states = new List<State>();
 
@@ -119,26 +157,26 @@ namespace ZoomableReference
                         ReferenceWindow mw = new ReferenceWindow();
                         mw.PreloadState = item;
                         mw.Show();
-                        listMainWindow.Add(mw);
+                        referenceWindows.Add(mw);
                     }
                 }
             }
         }
 
-        
+
         //Command section:
-        
+
         /// <summary>
         /// -- Close all the windows:
         /// </summary>
         private void CloseAllBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in listMainWindow)
+            foreach (var item in referenceWindows)
                 item.Close();
             foreach (var item in futureWindows)
                 item.Close();
 
-            listMainWindow.Clear();
+            referenceWindows.Clear();
             futureWindows.Clear();
         }
 
@@ -147,7 +185,7 @@ namespace ZoomableReference
         /// </summary>
         private void HideAllBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in listMainWindow)
+            foreach (var item in referenceWindows)
                 if (item.IsShowing)
                     item.WindowState = WindowState.Minimized;
 
@@ -161,7 +199,7 @@ namespace ZoomableReference
         /// </summary>
         private void ShowAllBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in listMainWindow)
+            foreach (var item in referenceWindows)
                 if (item.IsShowing)
                     item.WindowState = WindowState.Normal;
 
@@ -201,8 +239,10 @@ namespace ZoomableReference
             ReferenceWindow mw = new ReferenceWindow();
             mw.Show();
             mw.Activate();
-            listMainWindow.Add(mw);
+            referenceWindows.Add(mw);
+            RefreshList();
         }
+
 
         /// <summary>
         /// -- Create Protection window:
@@ -225,6 +265,14 @@ namespace ZoomableReference
         private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
         {
             SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);
+        }
+
+        /// <summary>
+        /// -- Refresh the list of the windows
+        /// </summary>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshList();
         }
     }
 }
