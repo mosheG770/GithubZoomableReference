@@ -99,7 +99,10 @@ namespace ZoomableReference
             foreach (var item in referenceWindows)
             {
                 if (item.IsShowing)
+                {
+                    item.Commander.Show();
                     item.Show();
+                }
             }
 
             List<State> states = new List<State>();
@@ -223,8 +226,26 @@ namespace ZoomableReference
                 item.SetSoft();
         }
 
+        /// <summary>
+        /// -- Lock all windows
+        /// </summary>
+        private void LockAllBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in referenceWindows)
+                item.Commander.Lock();
+        }
 
-        //Create section:
+        /// <summary>
+        /// -- Unlock all windows
+        /// </summary>
+        private void UnlockAllBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in referenceWindows)
+                item.Commander.Unlock();
+        }
+
+
+        //Create window Section:
 
         /// <summary>
         /// -- Create Layout window:
@@ -311,6 +332,32 @@ namespace ZoomableReference
         {
             if (WindowListBox.SelectedItem != null)
                 ((State)WindowListBox.SelectedItem).Commander.Show();
+        }
+        
+        /// <summary>
+        /// -- Toggle lock on selected item
+        /// </summary>
+        private void ToggleItemLockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowListBox.SelectedItem != null)
+            {
+                var selectedState = ((State)WindowListBox.SelectedItem);
+                if (selectedState.Commander is ReferenceWindowCommander)
+                    ((ReferenceWindowCommander)selectedState.Commander).ToggleLock();
+            }
+        }
+
+
+        //Drag and drop in manager window Section.
+
+        private void Border_Drop(object sender, DragEventArgs e)
+        {
+            
+        }
+
+        private void Grid_DragEnter(object sender, DragEventArgs e)
+        {
+
         }
     }
 }

@@ -26,7 +26,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="22,39,0,0" TextWrapping="Wrap" Text="Create new Window:" VerticalAlignment="Top" Width="193"/>
         <TextBlock Margin="17,102,0,0" TextWrapping="Wrap" Text="All windows commands:" VerticalAlignment="Top" HorizontalAlignment="Left" Width="265"/>
         <Separator Height="3" Margin="0,92,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="282"/>
-        <Separator Margin="0,180,0,0" HorizontalAlignment="Left" Width="282" Height="2" VerticalAlignment="Top"/>
+        <Separator Margin="0,232,0,0" HorizontalAlignment="Left" Width="282" Height="2" VerticalAlignment="Top"/>
         <ListBox x:Name="WindowListBox" Margin="287,93,10,10">
             <ListBox.ItemTemplate>
                 <ItemContainerTemplate>
@@ -40,7 +40,9 @@
         <Button x:Name="CloseItemBtn" Content="Close" HorizontalAlignment="Left" Margin="287,68,0,0" VerticalAlignment="Top" Width="41" Click="CloseItemBtn_Click"/>
         <Button x:Name="MinimizeItemBtn" Content="Hide" HorizontalAlignment="Right" Margin="0,68,66,0" VerticalAlignment="Top" Width="35" Click="MinimizeItemBtn_Click"/>
         <Button x:Name="ShowItemBtn" Content="Show" HorizontalAlignment="Right" Margin="0,68,10,0" VerticalAlignment="Top" Width="51" Click="ShowItemBtn_Click"/>
-        <Button x:Name="ConvertItemBtn" Content="Conver" HorizontalAlignment="Left" Margin="333,68,0,0" VerticalAlignment="Top" Width="59"/>
 
+        <Button x:Name="LockAllBtn" Content="Lock" HorizontalAlignment="Left" Margin="191,182,0,0" VerticalAlignment="Top" Width="75" Click="LockAllBtn_Click"/>
+        <Button x:Name="UnlockAllBtn" Content="Unlock" HorizontalAlignment="Left" Margin="191,207,0,0" VerticalAlignment="Top" Width="75" Click="UnlockAllBtn_Click"/>
+        <Button x:Name="ToggleItemLockBtn" Content="Toggle Lock" HorizontalAlignment="Left" Margin="333,68,0,0" VerticalAlignment="Top" Width="74" Click="ToggleItemLockBtn_Click"/>
     </Grid>
 </Window>

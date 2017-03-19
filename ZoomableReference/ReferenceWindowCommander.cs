@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ZoomableReference
 {
@@ -29,6 +30,33 @@ namespace ZoomableReference
         public void Show()
         {
             win.WindowState = System.Windows.WindowState.Normal;
+        }
+
+        internal void ToggleLock()
+        {
+            if (win.LockBorder.Visibility == Visibility.Hidden)
+            {
+                Lock();
+            }
+            else
+            {
+                Unlock();
+            }
+        }
+
+        internal void Lock()
+        {
+            win.LockBtn.Content = "Unlock";
+            win.LockBorder.Visibility = Visibility.Visible;
+            win.focus.IsLocked = true;
+            win.LockBtn.Visibility = Visibility.Hidden;
+        }
+
+        internal void Unlock()
+        {
+            win.LockBtn.Content = "Lock";
+            win.LockBorder.Visibility = Visibility.Hidden;
+            win.focus.IsLocked = false;
         }
     }
 }

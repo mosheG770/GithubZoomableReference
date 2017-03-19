@@ -50,11 +50,11 @@ namespace ZoomableReference
             drag = new DragManager(this);
 
             state = new StateManager(this);
+            Commander = new ReferenceWindowCommander(this);
 
             if (PreloadState != null)
                 state.SetState(PreloadState);
 
-            Commander = new ReferenceWindowCommander(this);
             SettingsManager.ModeChange += focus.ModeChanged;
         }
 
@@ -170,18 +170,7 @@ namespace ZoomableReference
 
         private void LockBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(LockBorder.Visibility == Visibility.Hidden)
-            {
-                LockBtn.Content = "Unlock";
-                LockBorder.Visibility = Visibility.Visible;
-                focus.IsLocked = true;
-            }
-            else
-            {
-                LockBtn.Content = "Lock";
-                LockBorder.Visibility = Visibility.Hidden;
-                focus.IsLocked = false;
-            }
+            Commander.ToggleLock();
         }
     }
 }

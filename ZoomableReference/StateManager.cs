@@ -21,7 +21,9 @@ namespace ZoomableReference
         public void SetState(State st)
         {
             main.imgHandler.LoadImage(st.imageSource);
-            main.focus.IsLocked = st.IsLocked;
+
+            if (st.IsLocked)
+                main.Commander.Lock();
 
             main.Top = st.Preset.WindowPosition.X;
             main.Left = st.Preset.WindowPosition.Y;
@@ -33,7 +35,7 @@ namespace ZoomableReference
         }
 
         public string StateToJson()
-        {  
+        {
             throw new NotImplementedException("We still working on this area.");
         }
 
