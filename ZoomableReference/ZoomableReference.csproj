@@ -98,13 +98,14 @@
     <Compile Include="DragManager.cs" />
     <Compile Include="Ext.cs" />
     <Compile Include="FocusManager.cs" />
-    <Compile Include="IStateManager.cs" />
-    <Compile Include="IWindowCommander.cs" />
+    <Compile Include="Interface\IStateManager.cs" />
+    <Compile Include="Interface\IWindowCommander.cs" />
     <Compile Include="LayoutWindow.xaml.cs">
       <DependentUpon>LayoutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageRotator.cs" />
     <Compile Include="LayoutStateManager.cs" />
+    <Compile Include="LayoutWindowCommander.cs" />
     <Compile Include="ReferenceWindowPartial.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>

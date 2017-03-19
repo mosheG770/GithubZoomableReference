@@ -23,14 +23,15 @@ namespace ZoomableReference
     /// <summary>
     /// Interaction logic for FutureWindow.xaml
     /// </summary>
-    public partial class FutureWindow : Window
+    public partial class LayoutWindow : Window
     {
         public bool IsShowing { get; set; }
+        public LayoutWindowCommander Commander { get; set; }
         internal LayoutStateManager state { get; set; }
         internal State PreloadState { get; set; }
-        internal ImageHandler imgHandler { get; set; }
+        internal ImageHandler imgHandler { get; set; } 
 
-        public FutureWindow()
+        public LayoutWindow()
         {
             InitializeComponent();
             ContentRendered += FutureWindow_ContentRendered;

@@ -30,8 +30,9 @@ namespace ZoomableReference
         ProtectionWindow pw;
         List<State> tempStates;
         public List<ReferenceWindow> referenceWindows;
-        List<FutureWindow> futureWindows = new List<FutureWindow>();
+        List<LayoutWindow> futureWindows = new List<LayoutWindow>();
         long listTimeStamp = 0;
+        Dictionary<State, Window> windowDictionary = new Dictionary<State, Window>();
 
         public ManagerWindow()
         {
@@ -62,21 +63,26 @@ namespace ZoomableReference
         /// </summary>
         private void RefreshList()
         {
+            RefreshBtn.IsEnabled = false;
             var syncCont = SynchronizationContext.Current;
             WindowListBox.ItemsSource = null;
             Task.Run(() =>
             {
                 long timeStamp = DateTime.Now.Ticks;
-                var results = referenceWindows.Select(o => o.state.GetState())
-                    .Concat(futureWindows.Select(t => t.state.GetState()));
+
+
+                var results = referenceWindows.Where(o=>o.IsShowing).Select(o => o.state.GetState())
+                            .Concat(futureWindows.Where(t=>t.IsShowing).Select(t => t.state.GetState()));
 
                 syncCont.Post(o =>
                 {
-                    if(timeStamp >= listTimeStamp)
+                    if (timeStamp >= listTimeStamp)
                     {
-                    WindowListBox.ItemsSource = results;
+                        WindowListBox.ItemsSource = results;
                         listTimeStamp = timeStamp;
                     }
+
+                    RefreshBtn.IsEnabled = true;
                 }, null);
             });
 
@@ -147,7 +153,7 @@ namespace ZoomableReference
                 {
                     if (item.IsFutureWindow)
                     {
-                        FutureWindow fw = new FutureWindow();
+                        LayoutWindow fw = new LayoutWindow();
                         fw.PreloadState = item;
                         fw.Show();
                         futureWindows.Add(fw);
@@ -225,7 +231,7 @@ namespace ZoomableReference
         /// </summary>
         private void TestWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            FutureWindow fw = new FutureWindow();
+            LayoutWindow fw = new LayoutWindow();
             fw.Show();
             fw.Activate();
             futureWindows.Add(fw);
@@ -273,6 +279,38 @@ namespace ZoomableReference
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             RefreshList();
+        }
+
+
+        //Item commands section
+        /// <summary>
+        /// -- Close selected window
+        /// </summary>
+        private void CloseItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowListBox.SelectedItem != null)
+            {
+                ((State)WindowListBox.SelectedItem).Commander.Close();
+                RefreshList();
+            }
+        }
+
+        /// <summary>
+        /// -- Minimize selected window
+        /// </summary>
+        private void MinimizeItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowListBox.SelectedItem != null)
+                ((State)WindowListBox.SelectedItem).Commander.Minimize();
+        }
+
+        /// <summary>
+        /// -- Show selected window
+        /// </summary>
+        private void ShowItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowListBox.SelectedItem != null)
+                ((State)WindowListBox.SelectedItem).Commander.Show();
         }
     }
 }

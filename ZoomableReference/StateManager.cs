@@ -52,6 +52,8 @@ namespace ZoomableReference
             st.ZoomPan = main.image.GetZoomPan();
             st.BackgroundColor = main.LayoutRoot.Background;
 
+            st.Commander = main.Commander;
+
             return st;
         }
     }
