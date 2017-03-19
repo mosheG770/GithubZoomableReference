@@ -61,11 +61,10 @@ namespace ZoomableReference
         public ZoomPanImage()
         {
             transformGroup.Children.Add(scaleTransform);
-            //transformGroup.Children.Add(translateTransform);
             transformGroup.Children.Add(rotateTransform);
 
 
-            this.RenderTransform = transformGroup;
+            RenderTransform = transformGroup;
 
             rotator = new ImageRotator(this);
 

@@ -17,12 +17,13 @@ namespace ZoomableReference.Model
 
         public static ZoomPan GetData(ScaleTransform scaleTransform, TranslateTransform translateTransform, RotateTransform rotateTransform)
         {
-            ZoomPan zp = new ZoomPan();
-            zp.scaleX = scaleTransform.ScaleX;
-            zp.scaleY = scaleTransform.ScaleY;
-            zp.posX = translateTransform.X;
-            zp.posY = translateTransform.Y;
-            zp.angle = rotateTransform.Angle;
+            ZoomPan zp = new ZoomPan() {
+                scaleX = scaleTransform.ScaleX,
+                scaleY = scaleTransform.ScaleY,
+                posX = translateTransform.X,
+                posY = translateTransform.Y,
+                angle = rotateTransform.Angle
+            };
             return zp;
         }
     }
