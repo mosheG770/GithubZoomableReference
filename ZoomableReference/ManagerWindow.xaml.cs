@@ -40,26 +40,33 @@ namespace ZoomableReference
             Manager = this;
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             InitializeComponent();
-            referenceWindows = new List<ReferenceWindow>();
-            Loaded += ManagerWindow_Loaded;
-            this.Activated += ManagerWindow_Activated;
 
+            ContentRendered += ManagerWindow_ContentRendered;
+            this.Activated += ManagerWindow_Activated;
+        }
+
+        private void ManagerWindow_ContentRendered(object sender, EventArgs e)
+        {
+            referenceWindows = new List<ReferenceWindow>();
+
+
+            pw = new ProtectionWindow();
+            WindowListBox.ItemsSource = referenceWindows;
+
+            //Handle when start the program by drag .zrf on the icon.
             var lines = Environment.GetCommandLineArgs();
-            if (lines.Length > 1)
+            if (lines.Length == 2)
             {
-                LoadState(lines[1]);
+                FileInfo f = new FileInfo(lines[1]);
+                if (f.Extension.ToLower() == ".zrf")
+                    LoadState(lines[1]);
             }
         }
+
 
         private void ManagerWindow_Activated(object sender, EventArgs e)
         {
             RefreshList();
-        }
-
-        private void ManagerWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            pw = new ProtectionWindow();
-            WindowListBox.ItemsSource = referenceWindows;
         }
 
 
@@ -77,8 +84,8 @@ namespace ZoomableReference
                 long timeStamp = DateTime.Now.Ticks;
 
 
-                var results = referenceWindows.Where(o=>o.IsShowing).Select(o => o.state.GetState())
-                            .Concat(futureWindows.Where(t=>t.IsShowing).Select(t => t.state.GetState()));
+                var results = referenceWindows.Where(o => o.IsShowing).Select(o => o.state.GetState())
+                            .Concat(futureWindows.Where(t => t.IsShowing).Select(t => t.state.GetState()));
 
                 syncCont.Post(o =>
                 {
@@ -348,7 +355,7 @@ namespace ZoomableReference
             if (WindowListBox.SelectedItem != null)
                 ((State)WindowListBox.SelectedItem).Commander.Show();
         }
-        
+
         /// <summary>
         /// -- Toggle lock on selected item
         /// </summary>
@@ -367,7 +374,7 @@ namespace ZoomableReference
 
         private void Border_Drop(object sender, DragEventArgs e)
         {
-            
+
         }
 
         private void Grid_DragEnter(object sender, DragEventArgs e)

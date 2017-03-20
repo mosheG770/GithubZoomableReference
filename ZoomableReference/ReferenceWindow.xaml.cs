@@ -26,17 +26,11 @@ namespace ZoomableReference
         public ReferenceWindow()
         {
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
+            ContentRendered += ReferenceWindow_ContentRendered; ;
             Closed += MainWindow_Closed;
         }
 
-        private void MainWindow_Closed(object sender, EventArgs e)
-        {
-            IsShowing = false;
-            SettingsManager.ModeChange -= focus.ModeChanged;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void ReferenceWindow_ContentRendered(object sender, EventArgs e)
         {
             IsShowing = true;
             image.MoveBorder = eventBorder;
@@ -44,7 +38,7 @@ namespace ZoomableReference
 
             imgHandler = new ImageHandler(image);
             imgHandler.SourceChange += ImgHandler_SourceChange;
-            imgHandler.InitatedLoad();
+            //imgHandler.InitatedLoad();
 
 
             focus = new FocusManager(this);
@@ -53,10 +47,17 @@ namespace ZoomableReference
             state = new StateManager(this);
             Commander = new ReferenceWindowCommander(this);
 
-            if (PreloadState != null)
-                state.SetState(PreloadState);
 
             SettingsManager.ModeChange += focus.ModeChanged;
+
+            if (PreloadState != null)
+                state.SetState(PreloadState);
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            IsShowing = false;
+            SettingsManager.ModeChange -= focus.ModeChanged;
         }
 
         private void ImgHandler_SourceChange()
