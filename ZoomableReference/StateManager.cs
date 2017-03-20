@@ -30,7 +30,8 @@ namespace ZoomableReference
             main.Width = st.Preset.WindowSize.X;
             main.Height = st.Preset.WindowSize.Y;
 
-            main.image.SetZoomPan(st.ZoomPan);
+            if (!st.IsTemplate)
+                main.image.SetZoomPan(st.ZoomPan);
             main.LayoutRoot.Background = st.BackgroundColor;
         }
 

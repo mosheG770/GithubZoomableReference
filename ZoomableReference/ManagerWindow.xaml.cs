@@ -63,7 +63,9 @@ namespace ZoomableReference
             }
         }
 
-
+        /// <summary>
+        /// -- every time the manager is in focus again, refresh the list of the windows.
+        /// </summary>
         private void ManagerWindow_Activated(object sender, EventArgs e)
         {
             RefreshList();
@@ -141,6 +143,54 @@ namespace ZoomableReference
             //write the list to file, with json/.
             tempStates = states;
 
+        }
+
+        /// <summary>
+        /// -- Save state as Template
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveTemplateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in referenceWindows)
+            {
+                if (item.IsShowing)
+                {
+                    item.Commander.Show();
+                    item.Show();
+                }
+            }
+
+            List<State> states = new List<State>();
+            foreach (var item in referenceWindows)
+                if (item.IsShowing)
+                {
+                    var state = item.state.GetState();
+                    state.IsTemplate = true;
+                    state.imageSource = "";
+                    states.Add(state);
+                }
+
+            foreach (var item in futureWindows)
+                if (item.IsShowing)
+                {
+                    var state = item.state.GetState();
+                    state.IsTemplate = true;
+                    states.Add(state);
+                }
+
+            HideAllBtn_Click(null, null);
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "ZoomableReferenceFile .zrf|*.zrf";
+            sfd.Title = "Save .zrf Template";
+            if (sfd.ShowDialog() == true)
+            {
+                var lines = states.Select(j => JsonConvert.SerializeObject(j));
+                File.WriteAllLines(sfd.FileName, lines);
+            }
+
+            ShowAllBtn_Click(null, null);
         }
 
         /// <summary>
