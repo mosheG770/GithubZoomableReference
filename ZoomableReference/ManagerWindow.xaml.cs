@@ -124,6 +124,7 @@ namespace ZoomableReference
                 File.WriteAllLines(sfd.FileName, lines);
             }
 
+            ShowAllBtn_Click(null, null);//Show all the windows again
             //write the list to file, with json/.
             tempStates = states;
 
@@ -170,6 +171,8 @@ namespace ZoomableReference
                     }
                 }
             }
+
+            ShowAllBtn_Click(null, null);
         }
 
 
@@ -256,6 +259,7 @@ namespace ZoomableReference
             fw.Show();
             fw.Activate();
             futureWindows.Add(fw);
+            RefreshList();
         }
 
         /// <summary>
