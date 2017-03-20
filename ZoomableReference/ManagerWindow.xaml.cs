@@ -43,6 +43,12 @@ namespace ZoomableReference
             referenceWindows = new List<ReferenceWindow>();
             Loaded += ManagerWindow_Loaded;
             this.Activated += ManagerWindow_Activated;
+
+            var lines = Environment.GetCommandLineArgs();
+            if (lines.Length > 1)
+            {
+                LoadState(lines[1]);
+            }
         }
 
         private void ManagerWindow_Activated(object sender, EventArgs e)
@@ -142,37 +148,42 @@ namespace ZoomableReference
 
             if (ofd.ShowDialog() == true)
             {
-                foreach (var item in referenceWindows)
-                    item.Close();
-
-                referenceWindows.Clear();
-
-                List<State> states = new List<State>();
-
-                var lines = File.ReadAllLines(ofd.FileName);
-                states = lines.Select(o => JsonConvert.DeserializeObject<State>(o)).ToList();
-
-
-                foreach (var item in states)
-                {
-                    if (item.IsFutureWindow)
-                    {
-                        LayoutWindow fw = new LayoutWindow();
-                        fw.PreloadState = item;
-                        fw.Show();
-                        futureWindows.Add(fw);
-                    }
-                    else
-                    {
-                        ReferenceWindow mw = new ReferenceWindow();
-                        mw.PreloadState = item;
-                        mw.Show();
-                        referenceWindows.Add(mw);
-                    }
-                }
+                LoadState(ofd.FileName);
             }
 
             ShowAllBtn_Click(null, null);
+        }
+
+        private void LoadState(string filePath)
+        {
+            foreach (var item in referenceWindows)
+                item.Close();
+
+            referenceWindows.Clear();
+
+            List<State> states = new List<State>();
+
+            var lines = File.ReadAllLines(filePath);
+            states = lines.Select(o => JsonConvert.DeserializeObject<State>(o)).ToList();
+
+
+            foreach (var item in states)
+            {
+                if (item.IsFutureWindow)
+                {
+                    LayoutWindow fw = new LayoutWindow();
+                    fw.PreloadState = item;
+                    fw.Show();
+                    futureWindows.Add(fw);
+                }
+                else
+                {
+                    ReferenceWindow mw = new ReferenceWindow();
+                    mw.PreloadState = item;
+                    mw.Show();
+                    referenceWindows.Add(mw);
+                }
+            }
         }
 
 
