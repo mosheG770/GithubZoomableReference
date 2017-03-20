@@ -61,6 +61,10 @@ namespace ZoomableReference
                 if (f.Extension.ToLower() == ".zrf")
                     LoadState(lines[1]);
             }
+
+
+            //To make things easier later:
+            Directory.CreateDirectory(Environment.CurrentDirectory + "\\Presets");
         }
 
         /// <summary>
@@ -131,8 +135,10 @@ namespace ZoomableReference
 
             HideAllBtn_Click(null, null);
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "ZoomableReferenceFile .zrf|*.zrf";
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "ZoomableReferenceFile .zrf|*.zrf"
+            };
             if (sfd.ShowDialog() == true)
             {
                 var lines = states.Select(j => JsonConvert.SerializeObject(j));
@@ -181,9 +187,13 @@ namespace ZoomableReference
 
             HideAllBtn_Click(null, null);
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "ZoomableReferenceFile .zrf|*.zrf";
-            sfd.Title = "Save .zrf Template";
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "ZoomableReferenceFile .zrf|*.zrf",
+                Title = "Save .zrf Preset",
+                InitialDirectory = Environment.CurrentDirectory + "\\Presets"
+            };
+
             if (sfd.ShowDialog() == true)
             {
                 var lines = states.Select(j => JsonConvert.SerializeObject(j));
@@ -198,30 +208,25 @@ namespace ZoomableReference
         /// </summary>
         private void LoadStateBtn_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog()
+            if (TryGetZrfFile(out var filePath))
             {
-                Filter = "ZoomableReferenceFile .zrf|*.zrf"
-            };
-
-            if (ofd.ShowDialog() == true)
-            {
-                LoadState(ofd.FileName);
+                LoadState(filePath);
             }
-
-            ShowAllBtn_Click(null, null);
         }
 
+        /// <summary>
+        /// -- Do the actual load
+        /// </summary>
+        /// <param name="filePath"></param>
         private void LoadState(string filePath)
         {
             foreach (var item in referenceWindows)
                 item.Close();
-
             referenceWindows.Clear();
 
-            List<State> states = new List<State>();
 
             var lines = File.ReadAllLines(filePath);
-            states = lines.Select(o => JsonConvert.DeserializeObject<State>(o)).ToList();
+            var states = lines.Select(o => JsonConvert.DeserializeObject<State>(o)).ToList();
 
 
             foreach (var item in states)
@@ -239,6 +244,63 @@ namespace ZoomableReference
                     mw.PreloadState = item;
                     mw.Show();
                     referenceWindows.Add(mw);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Try to get file
+        /// </summary>
+        /// <param name="StartPath">Keep empty for default path</param>
+        private bool TryGetZrfFile(out string filePath, string StartPath = null)
+        {
+            bool result = false;
+            filePath = "";
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "ZoomableReferenceFile .zrf|*.zrf"
+            };
+            if (!String.IsNullOrEmpty(StartPath))
+                ofd.InitialDirectory = StartPath;
+
+            if (ofd.ShowDialog() == true)
+            {
+                filePath = ofd.FileName;
+                result = true;
+            }
+
+            ShowAllBtn_Click(null, null);
+
+            return result;
+        }
+
+        /// <summary>
+        /// -- Add preset windows and not replace them like load state do
+        /// </summary>
+        private void LoadPresetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (TryGetZrfFile(out string filePath, Environment.CurrentDirectory + "\\Presets"))
+            {
+
+                var lines = File.ReadAllLines(filePath);
+                var states = lines.Select(o => JsonConvert.DeserializeObject<State>(o));
+
+                foreach (var item in states)
+                {
+                    if (item.IsFutureWindow)
+                    {
+                        LayoutWindow fw = new LayoutWindow();
+                        fw.PreloadState = item;
+                        fw.Show();
+                        futureWindows.Add(fw);
+                    }
+                    else
+                    {
+                        ReferenceWindow mw = new ReferenceWindow();
+                        mw.PreloadState = item;
+                        mw.Show();
+                        referenceWindows.Add(mw);
+                    }
                 }
             }
         }
