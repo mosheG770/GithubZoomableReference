@@ -9,8 +9,8 @@ namespace ZoomableReference
 {
     class LayoutStateManager : IStateManager
     {
-        FutureWindow win;
-        public LayoutStateManager(FutureWindow future)
+        LayoutWindow win;
+        public LayoutStateManager(LayoutWindow future)
         {
             win = future;
         }
@@ -21,7 +21,7 @@ namespace ZoomableReference
             st.IsFutureWindow = true;
             st.imageSource = win.imgHandler.LastURI;
             st.ZoomPan = win.image.GetZoomPan();
-
+            st.Commander = win.Commander;
             return st;
         }
 

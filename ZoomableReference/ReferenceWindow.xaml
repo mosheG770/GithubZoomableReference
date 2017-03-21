@@ -39,6 +39,8 @@
         </Button>
         <Button x:Name="HideBtn" Content="Hide" HorizontalAlignment="Left" Margin="0,141,0,0" VerticalAlignment="Top" Width="75" Click="HideBtn_Click"/>
         <CheckBox x:Name="RotateModekCB"  BorderThickness="2" Checked="RotateModekCB_Checked" Unchecked="RotateModekCB_Checked" Content="Rotate" HorizontalAlignment="Left" Margin="47,103,0,0" VerticalAlignment="Top" Width="64" Height="19"/>
+        <Border x:Name="LockBorder" Visibility="Hidden" Background="#01000000"/>
+        <Button x:Name="LockBtn" Content="Lock" Margin="0,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="46" Click="LockBtn_Click"/>
 
     </Grid>
 </Window>

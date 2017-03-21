@@ -57,9 +57,7 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
@@ -68,6 +66,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -98,12 +99,14 @@
     <Compile Include="DragManager.cs" />
     <Compile Include="Ext.cs" />
     <Compile Include="FocusManager.cs" />
-    <Compile Include="IStateManager.cs" />
+    <Compile Include="Interface\IStateManager.cs" />
+    <Compile Include="Interface\IWindowCommander.cs" />
     <Compile Include="LayoutWindow.xaml.cs">
       <DependentUpon>LayoutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageRotator.cs" />
     <Compile Include="LayoutStateManager.cs" />
+    <Compile Include="LayoutWindowCommander.cs" />
     <Compile Include="ReferenceWindowPartial.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
@@ -115,12 +118,15 @@
       <DependentUpon>ProtectionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsManager.cs" />
+    <Compile Include="SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StateManager.cs" />
     <Compile Include="TextBoxSA.cs" />
     <Compile Include="UCZoomPanImage.xaml.cs">
       <DependentUpon>UCZoomPanImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowShowed.cs" />
+    <Compile Include="ReferenceWindowCommander.cs" />
     <Compile Include="ZoomPanImage.cs" />
     <Page Include="LayoutWindow.xaml">
       <SubType>Designer</SubType>
@@ -144,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProtectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

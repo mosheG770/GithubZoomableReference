@@ -58,9 +58,8 @@ namespace ZoomableReference
             {
                 html = (string)obj;
             }
-            else if (obj is MemoryStream)
+            else if (obj is MemoryStream ms)
             {
-                MemoryStream ms = (MemoryStream)obj;
                 byte[] buffer = new byte[ms.Length];
                 ms.Read(buffer, 0, (int)ms.Length);
                 if (buffer[1] == (byte)0)  // Detecting unicode

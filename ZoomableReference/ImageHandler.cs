@@ -47,18 +47,6 @@ namespace ZoomableReference
             }
         }
 
-        internal void InitatedLoad()
-        {
-            var arguments = Environment.GetCommandLineArgs();
-            if (arguments.Length == 2)
-            {
-                try
-                {
-                    LoadImage(arguments[1]);
-                }
-                catch (Exception) { }
-            }
-        }
 
         internal void BrowseImage()
         {

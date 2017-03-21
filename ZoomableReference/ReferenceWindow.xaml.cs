@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,8 +15,9 @@ namespace ZoomableReference
     {
         internal ImageHandler imgHandler;
 
-        FocusManager focus;
+        internal FocusManager focus;
         DragManager drag;
+        public ReferenceWindowCommander Commander { get; set; }
         internal StateManager state;
 
         internal State PreloadState { get; set; }
@@ -24,34 +26,38 @@ namespace ZoomableReference
         public ReferenceWindow()
         {
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
+            ContentRendered += ReferenceWindow_ContentRendered; ;
             Closed += MainWindow_Closed;
         }
 
-        private void MainWindow_Closed(object sender, EventArgs e)
-        {
-            IsShowing = false;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void ReferenceWindow_ContentRendered(object sender, EventArgs e)
         {
             IsShowing = true;
+            image.MoveBorder = eventBorder;
             image.MyBorder = border;
 
             imgHandler = new ImageHandler(image);
             imgHandler.SourceChange += ImgHandler_SourceChange;
-            imgHandler.InitatedLoad();
+            //imgHandler.InitatedLoad();
 
 
             focus = new FocusManager(this);
             drag = new DragManager(this);
 
             state = new StateManager(this);
+            Commander = new ReferenceWindowCommander(this);
+
+
+            SettingsManager.ModeChange += focus.ModeChanged;
 
             if (PreloadState != null)
                 state.SetState(PreloadState);
+        }
 
-            SettingsManager.ModeChange += focus.ModeChanged;
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            IsShowing = false;
+            SettingsManager.ModeChange -= focus.ModeChanged;
         }
 
         private void ImgHandler_SourceChange()
@@ -67,7 +73,7 @@ namespace ZoomableReference
 
         private void QuitBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Commander.Close();
         }
 
         private void UrlBtn_Click(object sender, RoutedEventArgs e)
@@ -143,7 +149,7 @@ namespace ZoomableReference
 
         private void HideBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
+            Commander.Minimize();
         }
 
 
@@ -162,6 +168,11 @@ namespace ZoomableReference
         private void RotateModekCB_Checked(object sender, RoutedEventArgs e)
         {
             image.IsRotateMode = RotateModekCB.IsChecked == true;
+        }
+
+        private void LockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Commander.ToggleLock();
         }
     }
 }
