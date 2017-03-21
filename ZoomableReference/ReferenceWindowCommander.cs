@@ -30,6 +30,8 @@ namespace ZoomableReference
         public void Show()
         {
             win.WindowState = System.Windows.WindowState.Normal;
+            if (SettingsManager.ShowGetFocus)
+                win.Activate();
         }
 
         internal void ToggleLock()

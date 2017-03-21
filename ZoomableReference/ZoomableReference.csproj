@@ -118,13 +118,15 @@
       <DependentUpon>ProtectionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsManager.cs" />
+    <Compile Include="SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StateManager.cs" />
     <Compile Include="TextBoxSA.cs" />
     <Compile Include="UCZoomPanImage.xaml.cs">
       <DependentUpon>UCZoomPanImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReferenceWindowCommander.cs" />
-    <Compile Include="WindowShowed.cs" />
     <Compile Include="ZoomPanImage.cs" />
     <Page Include="LayoutWindow.xaml">
       <SubType>Designer</SubType>
@@ -148,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProtectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

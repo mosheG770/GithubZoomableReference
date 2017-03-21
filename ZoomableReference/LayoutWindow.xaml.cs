@@ -27,7 +27,7 @@ namespace ZoomableReference
     {
         public bool IsShowing { get; set; }
         public LayoutWindowCommander Commander { get; set; }
-        internal LayoutStateManager state { get; set; }
+        internal LayoutStateManager State { get; set; }
         internal State PreloadState { get; set; }
         internal ImageHandler imgHandler { get; set; } 
 
@@ -51,20 +51,20 @@ namespace ZoomableReference
             WindowState = WindowState.Maximized;
             this.Topmost = true;
 
-            state = new LayoutStateManager(this);
+            State = new LayoutStateManager(this);
 
             if (PreloadState != null)
-                state.SetState(PreloadState);
+                State.SetState(PreloadState);
         }
 
         
         public const int WS_EX_TRANSPARENT = 0x00000020; public const int GWL_EXSTYLE = (-20);
 
         [DllImport("user32.dll")]
-        public static extern int GetWindowLong(IntPtr hwnd, int index);
+        private static extern int GetWindowLong(IntPtr hwnd, int index);
 
         [DllImport("user32.dll")]
-        public static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
+        private static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
 
         int standart = 0;
         public void SetSolid()

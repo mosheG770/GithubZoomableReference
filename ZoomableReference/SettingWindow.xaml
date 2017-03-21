@@ -1,0 +1,14 @@
+﻿<Window x:Class="ZoomableReference.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZoomableReference"
+        mc:Ignorable="d"
+        Title="SettingWindow" Height="311.278" Width="324.812">
+    <Grid>
+        <CheckBox x:Name="SimpleModeCB" Content="Simple mode" Checked="SimpleModeCB_Checked" Unchecked="SimpleModeCB_Checked" HorizontalAlignment="Left" Margin="23,32,0,0" VerticalAlignment="Top" Width="100"/>
+        <CheckBox x:Name="ActiveFocusCB" Content="Bring the focus to window when active" Checked="ActiveFocusCB_Checked" Unchecked="ActiveFocusCB_Checked" HorizontalAlignment="Left" Margin="23,52,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

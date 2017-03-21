@@ -19,8 +19,9 @@
         <Button x:Name="LayoutWindowBtn" Content="Layout window" HorizontalAlignment="Left" Margin="153,60,0,0" VerticalAlignment="Top" Width="92" Click="TestWindowBtn_Click"/>
         <Button x:Name="TestWindowSoftBtn" Content="Soft" HorizontalAlignment="Left" Margin="191,120,0,0" VerticalAlignment="Top" Width="75" Click="TestWindowSoftBtn_Click"/>
         <Menu Height="18" VerticalAlignment="Top">
-            <MenuItem Header="Mode">
+            <MenuItem Header="Options">
                 <MenuItem Checked="SimpleModeMI_Checked" Unchecked="SimpleModeMI_Checked" x:Name="SimpleModeMI" Header="Simple" IsCheckable="True"/>
+                <MenuItem x:Name="SettingWindowMI" Click="SettingWindowMI_Click" Header="Settings"/>
             </MenuItem>
         </Menu>
         <TextBlock HorizontalAlignment="Left" Margin="22,39,0,0" TextWrapping="Wrap" Text="Create new Window:" VerticalAlignment="Top" Width="193"/>

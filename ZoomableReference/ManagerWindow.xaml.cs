@@ -91,7 +91,7 @@ namespace ZoomableReference
 
 
                 var results = referenceWindows.Where(o => o.IsShowing).Select(o => o.state.GetState())
-                            .Concat(futureWindows.Where(t => t.IsShowing).Select(t => t.state.GetState()));
+                            .Concat(futureWindows.Where(t => t.IsShowing).Select(t => t.State.GetState()));
 
                 syncCont.Post(o =>
                 {
@@ -131,7 +131,7 @@ namespace ZoomableReference
 
             foreach (var item in futureWindows)
                 if (item.IsShowing)
-                    states.Add(item.state.GetState());
+                    states.Add(item.State.GetState());
 
             HideAllBtn_Click(null, null);
 
@@ -180,7 +180,7 @@ namespace ZoomableReference
             foreach (var item in futureWindows)
                 if (item.IsShowing)
                 {
-                    var state = item.state.GetState();
+                    var state = item.State.GetState();
                     state.IsTemplate = true;
                     states.Add(state);
                 }
@@ -233,15 +233,19 @@ namespace ZoomableReference
             {
                 if (item.IsFutureWindow)
                 {
-                    LayoutWindow fw = new LayoutWindow();
-                    fw.PreloadState = item;
+                    LayoutWindow fw = new LayoutWindow()
+                    {
+                        PreloadState = item
+                    };
                     fw.Show();
                     futureWindows.Add(fw);
                 }
                 else
                 {
-                    ReferenceWindow mw = new ReferenceWindow();
-                    mw.PreloadState = item;
+                    ReferenceWindow mw = new ReferenceWindow()
+                    {
+                        PreloadState = item
+                    };
                     mw.Show();
                     referenceWindows.Add(mw);
                 }
@@ -289,15 +293,19 @@ namespace ZoomableReference
                 {
                     if (item.IsFutureWindow)
                     {
-                        LayoutWindow fw = new LayoutWindow();
-                        fw.PreloadState = item;
+                        LayoutWindow fw = new LayoutWindow()
+                        {
+                            PreloadState = item
+                        };
                         fw.Show();
                         futureWindows.Add(fw);
                     }
                     else
                     {
-                        ReferenceWindow mw = new ReferenceWindow();
-                        mw.PreloadState = item;
+                        ReferenceWindow mw = new ReferenceWindow()
+                        {
+                            PreloadState = item
+                        };
                         mw.Show();
                         referenceWindows.Add(mw);
                     }
@@ -420,6 +428,8 @@ namespace ZoomableReference
         }
 
 
+        //Elements Events
+
         /// <summary>
         /// -- Simple mode: toggle by the CheckBox
         /// </summary>
@@ -427,6 +437,13 @@ namespace ZoomableReference
         {
             SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);
         }
+        
+        private void SettingWindowMI_Click(object sender, RoutedEventArgs e)
+        {
+            SettingWindow sw = new SettingWindow();
+            sw.ShowDialog();
+        }
+
 
         /// <summary>
         /// -- Refresh the list of the windows
@@ -479,19 +496,6 @@ namespace ZoomableReference
                 if (selectedState.Commander is ReferenceWindowCommander)
                     ((ReferenceWindowCommander)selectedState.Commander).ToggleLock();
             }
-        }
-
-
-        //Drag and drop in manager window Section.
-
-        private void Border_Drop(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void Grid_DragEnter(object sender, DragEventArgs e)
-        {
-
         }
     }
 }
