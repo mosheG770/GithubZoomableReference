@@ -36,8 +36,14 @@ namespace ZoomableReference
         {
             try // Temp solution, fix ASAP!
             {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.UriSource = new Uri(filePath, UriKind.Absolute);
+                bitmap.EndInit();
+
+                img.Source = bitmap;
                 LastURI = filePath;
-                img.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
                 SourceChange?.Invoke();
             }
             catch (Exception e)
