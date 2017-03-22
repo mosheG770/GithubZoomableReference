@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="SettingWindow" Height="311.278" Width="324.812">
     <Grid>
-        <CheckBox x:Name="SimpleModeCB" Content="Simple mode" Checked="SimpleModeCB_Checked" Unchecked="SimpleModeCB_Checked" HorizontalAlignment="Left" Margin="23,32,0,0" VerticalAlignment="Top" Width="100"/>
-        <CheckBox x:Name="ActiveFocusCB" Content="Bring the focus to window when active" Checked="ActiveFocusCB_Checked" Unchecked="ActiveFocusCB_Checked" HorizontalAlignment="Left" Margin="23,52,0,0" VerticalAlignment="Top"/>
-
+        <CheckBox x:Name="ActiveFocusCB" Content="Bring focus to window with the command &quot;Show&quot;" Checked="ActiveFocusCB_Checked" Unchecked="ActiveFocusCB_Checked" Margin="23,135,10,0" VerticalAlignment="Top" Height="38"/>
+        <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Margin="10,25,0,0" TextWrapping="Wrap" Text="Reference window:" VerticalAlignment="Top" Width="197"/>
+        <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Margin="10,114,0,0" TextWrapping="Wrap" Text="Manager window:" VerticalAlignment="Top" Width="136"/>
+        <RadioButton x:Name="SimpleModeRB" Content="Simple" Checked="RadioButton_Checked" GroupName="ReferenceMode" HorizontalAlignment="Left" Margin="23,46,0,0" VerticalAlignment="Top" Width="100"/>
+        <RadioButton x:Name="MinimalModeRB" Content="Minimal" Checked="RadioButton_Checked" GroupName="ReferenceMode" HorizontalAlignment="Left" Margin="23,61,0,0" VerticalAlignment="Top" Width="100"/>
+        <RadioButton x:Name="NormalModeRB" Content="Normal" Checked="RadioButton_Checked" GroupName="ReferenceMode" HorizontalAlignment="Left" Margin="23,76,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

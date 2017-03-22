@@ -19,27 +19,42 @@ namespace ZoomableReference
     /// </summary>
     public partial class SettingWindow : Window
     {
+        RadioButtonManager radioManager;
+
+
         public SettingWindow()
         {
             InitializeComponent();
             this.Topmost = true;
-            ContentRendered += SettingWindow_ContentRendered;
+            Loaded += SettingWindow_Loaded;
         }
 
-        private void SettingWindow_ContentRendered(object sender, EventArgs e)
+        /// <summary>
+        /// Main use is to set all the settings again.
+        /// can't do it with binding because IsChecked could be null and settings are statics
+        /// maybe singelton could be useful here.
+        /// </summary>
+        private void SettingWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            radioManager = new RadioButtonManager(this);
+
             ActiveFocusCB.IsChecked = SettingsManager.ShowGetFocus;
-            SimpleModeCB.IsChecked = SettingsManager.IsSimpleMode;
+            radioManager.SetReferenceMode(SettingsManager.ReferenceWindowMode);
         }
 
-        private void SimpleModeCB_Checked(object sender, RoutedEventArgs e)
-        {
-            SettingsManager.IsSimpleMode = SimpleModeCB.IsChecked == true;
-        }
+        //CheckBox Section.
 
         private void ActiveFocusCB_Checked(object sender, RoutedEventArgs e)
         {
             SettingsManager.ShowGetFocus = ActiveFocusCB.IsChecked == true;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!radioManager.IsChangingSettings)
+            {
+                SettingsManager.ReferenceWindowMode = radioManager.GetReferenceMode();
+            }
         }
     }
 }

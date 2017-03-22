@@ -97,6 +97,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DragManager.cs" />
+    <Compile Include="EnumCollection.cs" />
     <Compile Include="Ext.cs" />
     <Compile Include="FocusManager.cs" />
     <Compile Include="Interface\IStateManager.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="ImageRotator.cs" />
     <Compile Include="LayoutStateManager.cs" />
     <Compile Include="LayoutWindowCommander.cs" />
+    <Compile Include="RadioButtonManager.cs" />
     <Compile Include="ReferenceWindowPartial.cs" />
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>

@@ -20,7 +20,6 @@
         <Button x:Name="TestWindowSoftBtn" Content="Soft" HorizontalAlignment="Left" Margin="191,120,0,0" VerticalAlignment="Top" Width="75" Click="TestWindowSoftBtn_Click"/>
         <Menu Height="18" VerticalAlignment="Top">
             <MenuItem Header="Options">
-                <MenuItem Checked="SimpleModeMI_Checked" Unchecked="SimpleModeMI_Checked" x:Name="SimpleModeMI" Header="Simple" IsCheckable="True"/>
                 <MenuItem x:Name="SettingWindowMI" Click="SettingWindowMI_Click" Header="Settings"/>
             </MenuItem>
         </Menu>

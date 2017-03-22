@@ -42,21 +42,22 @@ namespace ZoomableReference
 
         public State GetState()
         {
-            State st = new State();
-            st.IsLocked = main.focus.IsLocked;
-            st.imageSource = main.imgHandler.LastURI;
-
-            st.Preset = new Preset()
+            State st = new State()
             {
-                WindowPosition = new Point(main.Top, main.Left),
-                WindowSize = new Point(main.Width, main.Height)
+                IsLocked = main.focus.IsLocked,
+                imageSource = main.imgHandler.LastURI,
+
+                Preset = new Preset()
+                {
+                    WindowPosition = new Point(main.Top, main.Left),
+                    WindowSize = new Point(main.Width, main.Height)
+                },
+
+                ZoomPan = main.image.GetZoomPan(),
+                BackgroundColor = main.LayoutRoot.Background,
+
+                Commander = main.Commander
             };
-
-            st.ZoomPan = main.image.GetZoomPan();
-            st.BackgroundColor = main.LayoutRoot.Background;
-
-            st.Commander = main.Commander;
-
             return st;
         }
     }
