@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZoomableReference"
         mc:Ignorable="d"
-        Title="SettingWindow" Height="311.278" Width="324.812">
+        Title="SettingWindow" Height="218.278" Width="324.812">
     <Grid>
         <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Margin="10,25,0,0" TextWrapping="Wrap" Text="Reference window:" VerticalAlignment="Top" Width="197"/>
         <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Margin="10,114,0,0" TextWrapping="Wrap" Text="Manager window:" VerticalAlignment="Top" Width="197"/>
