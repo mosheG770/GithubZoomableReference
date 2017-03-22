@@ -71,7 +71,7 @@ the window has 2 states - Solid and Soft, **Solid** mean you can't move the imag
 * flip and rotate buttons are also here.
 
 # Settings window:
-![Settings window](/Images/SettingsWindow.PNG?raw=true "Settings window")
+![Settings window](/Images/SettingWindow.PNG?raw=true "Settings window")
 
 Here you can change the reference window's mode.
 
