@@ -429,14 +429,6 @@ namespace ZoomableReference
 
 
         //Elements Events
-
-        /// <summary>
-        /// -- Simple mode: toggle by the CheckBox
-        /// </summary>
-        private void SimpleModeMI_Checked(object sender, RoutedEventArgs e)
-        {
-            SettingsManager.IsSimpleMode = (SimpleModeMI.IsChecked == true);
-        }
         
         private void SettingWindowMI_Click(object sender, RoutedEventArgs e)
         {

@@ -53,14 +53,21 @@ namespace ZoomableReference
             if (IsLocked)
                 visi = Visibility.Hidden;
 
-            main.QuitBtn.Visibility = visi;
-            main.MoveBtn.Visibility = visi;
-            main.ResetBtn.Visibility = visi;
 
             main.HoriFlipBtn.Visibility = visi;
             main.VertiFlipBtn.Visibility = visi;
             main.HideBtn.Visibility = visi;
             main.RotateModekCB.Visibility = visi;
+
+            if (SettingsManager.ReferenceWindowMode == ReferenceWindowMode.Minimal)
+                visi = Visibility.Hidden;
+            //Add canvas or grids to select what dissapear when, 
+            //to make sure everything is in order is way more complex
+
+            main.QuitBtn.Visibility = visi;
+            main.MoveBtn.Visibility = visi;
+            main.ResetBtn.Visibility = visi;
+
 
             if (visi == Visibility.Hidden)
             {
@@ -68,7 +75,7 @@ namespace ZoomableReference
                 main.UrlPathTxt.Visibility = visi;
             }
 
-            if (SettingsManager.IsSimpleMode)
+            if (SettingsManager.ReferenceWindowMode == ReferenceWindowMode.Simple)
                 visi = Visibility.Hidden;//ugly, but do the job better than run 2 times. with visi:hidden and than with visi:visible
 
             main.ColorBtn.Visibility = visi;

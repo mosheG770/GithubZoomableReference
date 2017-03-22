@@ -10,11 +10,11 @@ namespace ZoomableReference
     {
         public static bool ShowGetFocus { get; set; }
 
-        private static bool isSimpleMode;
-        public static bool IsSimpleMode
+        private static ReferenceWindowMode referenceWindowMode = ReferenceWindowMode.Normal;
+        public static ReferenceWindowMode ReferenceWindowMode
         {
-            get { return isSimpleMode; }
-            set { isSimpleMode = value; ModeChange?.Invoke(); }
+            get { return referenceWindowMode; }
+            set { referenceWindowMode = value; ModeChange?.Invoke(); }
         }
 
         public static event Action ModeChange;
