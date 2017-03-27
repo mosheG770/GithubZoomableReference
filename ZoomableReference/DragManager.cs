@@ -73,7 +73,7 @@ namespace ZoomableReference
             }
 
             var match = Regex.Match(html, @"src=""([^ "">]+)""").Groups[1];
-            MessageBox.Show(match.Value);
+            //MessageBox.Show(match.Value);
 
             if (match.Success)
             {
