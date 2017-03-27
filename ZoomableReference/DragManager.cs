@@ -13,13 +13,6 @@ namespace ZoomableReference
 {
     class DragManager
     {
-        Window main;
-
-        public DragManager(Window win)
-        {
-            main = win;
-        }
-
         public void LoadDrag(object sender, DragEventArgs e, Action<string> ImageLoad)
         {
             var formats = e.Data.GetFormats();

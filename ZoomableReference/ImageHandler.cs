@@ -14,7 +14,7 @@ namespace ZoomableReference
     /// <summary>
     /// Handle the first load and others loads.
     /// </summary>
-    class ImageHandler
+    public class ImageHandler
     {
         private OpenFileDialog ofd;
 

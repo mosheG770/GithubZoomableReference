@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZoomableReference"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="304.333" Width="541">
+        Title="ManagerWindow" Height="304.333" Width="541"
+        AllowDrop="True" Drop="Window_Drop">
 
 
     <Grid>
