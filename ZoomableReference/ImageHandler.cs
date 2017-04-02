@@ -28,7 +28,7 @@ namespace ZoomableReference
             img = image;
 
             ofd = new OpenFileDialog();
-            ofd.Filter = "Image file|*.jpg;*.jpeg;*.png";
+            ofd.Filter = "Image file|*.jpg;*.jpeg;*.png;*.bmp;*.tiff|All files|*.*";
         }
 
 
