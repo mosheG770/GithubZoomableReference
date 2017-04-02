@@ -13,13 +13,6 @@ namespace ZoomableReference
 {
     class DragManager
     {
-        Window main;
-
-        public DragManager(Window win)
-        {
-            main = win;
-        }
-
         public void LoadDrag(object sender, DragEventArgs e, Action<string> ImageLoad)
         {
             var formats = e.Data.GetFormats();
@@ -73,7 +66,7 @@ namespace ZoomableReference
             }
 
             var match = Regex.Match(html, @"src=""([^ "">]+)""").Groups[1];
-            MessageBox.Show(match.Value);
+            //MessageBox.Show(match.Value);
 
             if (match.Success)
             {

@@ -14,7 +14,7 @@ namespace ZoomableReference
     /// <summary>
     /// Handle the first load and others loads.
     /// </summary>
-    class ImageHandler
+    public class ImageHandler
     {
         private OpenFileDialog ofd;
 
@@ -28,7 +28,7 @@ namespace ZoomableReference
             img = image;
 
             ofd = new OpenFileDialog();
-            ofd.Filter = "Image file|*.jpg;*.jpeg;*.png";
+            ofd.Filter = "Image file|*.jpg;*.jpeg;*.png;*.bmp;*.tiff|All files|*.*";
         }
 
 
@@ -36,8 +36,14 @@ namespace ZoomableReference
         {
             try // Temp solution, fix ASAP!
             {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.UriSource = new Uri(filePath, UriKind.Absolute);
+                bitmap.EndInit();
+
+                img.Source = bitmap;
                 LastURI = filePath;
-                img.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
                 SourceChange?.Invoke();
             }
             catch (Exception e)

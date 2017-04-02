@@ -13,7 +13,7 @@ namespace ZoomableReference
 {
     public partial class ReferenceWindow : Window
     {
-        internal ImageHandler imgHandler;
+        public ImageHandler imgHandler;
 
         internal FocusManager focus;
         DragManager drag;
@@ -21,6 +21,8 @@ namespace ZoomableReference
         internal StateManager state;
 
         internal State PreloadState { get; set; }
+        public string PreloadImage { get; set; }
+
         public bool IsShowing { get; set; }
 
         public ReferenceWindow()
@@ -42,7 +44,7 @@ namespace ZoomableReference
 
 
             focus = new FocusManager(this);
-            drag = new DragManager(this);
+            drag = new DragManager();
 
             state = new StateManager(this);
             Commander = new ReferenceWindowCommander(this);
@@ -52,6 +54,8 @@ namespace ZoomableReference
 
             if (PreloadState != null)
                 state.SetState(PreloadState);
+            if (PreloadImage != null)
+                imgHandler.LoadImage(PreloadImage);
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

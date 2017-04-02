@@ -26,6 +26,7 @@ namespace ZoomableReference
     public partial class ManagerWindow : Window
     {
         public static ManagerWindow Manager { get; private set; }
+        DragManager drag;
 
         ProtectionWindow pw;
         List<State> tempStates;
@@ -48,6 +49,7 @@ namespace ZoomableReference
         private void ManagerWindow_ContentRendered(object sender, EventArgs e)
         {
             referenceWindows = new List<ReferenceWindow>();
+            drag = new DragManager();
 
 
             pw = new ProtectionWindow();
@@ -61,7 +63,6 @@ namespace ZoomableReference
                 if (f.Extension.ToLower() == ".zrf")
                     LoadState(lines[1]);
             }
-
 
             //To make things easier later:
             Directory.CreateDirectory(Environment.CurrentDirectory + "\\Presets");
@@ -429,7 +430,28 @@ namespace ZoomableReference
 
 
         //Elements Events
-        
+
+        /// <summary>
+        /// Drop something on the manager:
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            drag.LoadDrag(sender, e, o =>
+            {
+                ReferenceWindow rw = new ReferenceWindow()
+                {
+                    PreloadImage = o
+                };
+                rw.Show();
+                rw.Activate();
+                referenceWindows.Add(rw);
+                RefreshList();
+            });
+        }
+
+
         private void SettingWindowMI_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow sw = new SettingWindow();
