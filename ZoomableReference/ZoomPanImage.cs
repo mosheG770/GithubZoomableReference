@@ -75,11 +75,13 @@ namespace ZoomableReference
         public void HorizontalFlip()
         {
             scaleTransform.ScaleX = -scaleTransform.ScaleX;
+            translateTransform.X = -translateTransform.X;
         }
 
         public void VerticalFlip()
         {
             scaleTransform.ScaleY = -scaleTransform.ScaleY;
+            translateTransform.Y = -translateTransform.Y;
         }
 
         public void SetZoomPan(double scaleX, double scaleY, double posX, double posY, double angle)
